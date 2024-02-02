@@ -28,7 +28,22 @@ const config: GatsbyConfig = {
       trackingIds: ["YOUR_GOOGLE_ANALYTICS_TRACKING_ID"],
    
     },
-  }]
+  },
+  {
+    resolve: `gatsby-source-filesystem`,
+    options: {
+      name: `admin`,
+      path: `${__dirname}/src/admin/`,
+    },
+  },
+  {
+    resolve: `gatsby-source-filesystem`,
+    options: {
+      name: `login`,
+      path: `${__dirname}/src/admin/components/Login`,
+    },
+  },
+  ],
 };
 
 export default config;
