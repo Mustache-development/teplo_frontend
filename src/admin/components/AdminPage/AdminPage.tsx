@@ -22,7 +22,8 @@ const Admin: React.FC = (props) => {
 
   const handleSave = async (name: string, data: string) => {
     console.log('handleSave from AdminPage');
-    
+    console.log(name);
+    console.log(data);
     const queryRequest = {
       email: "email?newEmail",
       idTelegram: "id-telegram?newIdTelegram",
@@ -42,7 +43,7 @@ const Admin: React.FC = (props) => {
       apiUrl=`https://teplo-back.onrender.com/api/admin/password`;
     } else {
       bodyContent = {};
-      const apiUrl = `https://teplo-back.onrender.com/api/admin/${queryRequest[name]}=${data}`;
+      apiUrl = `https://teplo-back.onrender.com/api/admin/${queryRequest[name]}=${data}`;
     }
         
     console.log(apiUrl)

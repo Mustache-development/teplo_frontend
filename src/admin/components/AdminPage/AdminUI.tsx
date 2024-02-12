@@ -83,7 +83,7 @@
                                     <Button 
                                         variant="contained" 
                                         color="primary" 
-                                        onClick={(e) => handleSaveClick(e, "password")} 
+                                        onClick={(e) => handleSaveClick(e, key)} 
                                         sx={{ marginLeft: 0 }} 
                                         size="large"
                                         style={{ width: '100%' }}
