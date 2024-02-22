@@ -9,6 +9,7 @@ const Admin: React.FC = (props) => {
   const authToken = localStorage.getItem('authToken')
   const formattedToken = authToken ? authToken.replace(/"/g, '') : '';
   const [isAuth, setIsAuth] = useState(false);
+  const baseUrl = process.env.BACKEND_URL;
 
   useEffect(() => {
     // Перевірка наявності токену при кожному рендері компонента
@@ -26,7 +27,7 @@ const Admin: React.FC = (props) => {
     console.log(data);
     const queryRequest = {
       email: "email?newEmail",
-      idTelegram: "id-telegram?newIdTelegram",
+      telegram: "id-telegram?newIdTelegram",
       tokenTelegramBot: "token-telegram-bot?newTokenTelegramBot",
       tokenMonobank: "token-monobank?newTokenMonobank",
       password: "password"
@@ -40,10 +41,10 @@ const Admin: React.FC = (props) => {
         newPassword: data.newPassword
       };
 
-      apiUrl=`https://teplo-back.onrender.com/api/admin/password`;
+      apiUrl=`${baseUrl}/admin/password`;
     } else {
       bodyContent = {};
-      apiUrl = `https://teplo-back.onrender.com/api/admin/${queryRequest[name]}=${data}`;
+      apiUrl = `${baseUrl}/admin/${queryRequest[name]}=${data}`;
     }
         
     console.log(apiUrl)

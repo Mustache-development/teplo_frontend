@@ -1,12 +1,14 @@
     import React from 'react';
     import { Container, TextField, Button, Box, Typography, Grid } from '@mui/material';
+    import { Link } from 'gatsby'
 
     interface AdminUIProps {
         handleSave: (name: string, data: string) => void;
         handleLogOut: () => void;
+        handleToSite: () => void;
     }
 
-    const AdminUI: React.FC<AdminUIProps> = ({ handleSave, handleLogOut }) => {
+    const AdminUI: React.FC<AdminUIProps> = ({ handleSave, handleLogOut, handleToSite }) => {
 
             interface FormData {
             email: string;
@@ -131,7 +133,7 @@
                                 Зберегти
                             </Button>
                         </Grid>
-                        <Grid item xs={12}>
+                        <Grid item xs={6}>
                             <Box display="flex" width="100%">
                                 <Button 
                                     variant="contained" 
@@ -141,6 +143,21 @@
                                     fullWidth  // Встановлює кнопку на всю доступну ширину Box
                                 >
                                     Вийти
+                                </Button>
+                            </Box>
+                        </Grid>
+                        <Grid item xs={6}>
+                            <Box display="flex" width="100%">
+                                <Button 
+                                    variant="contained" 
+                                    color="primary" 
+                                    
+                                    size="large"
+                                    fullWidth  // Встановлює кнопку на всю доступну ширину Box
+                                >
+                                    <Link to='/'>
+                                        До сайту
+                                    </Link>
                                 </Button>
                             </Box>
                         </Grid>

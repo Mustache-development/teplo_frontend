@@ -12,6 +12,31 @@ import PaidIcon from '@mui/icons-material/Paid';
 import PostListComponent from "../posts/PostListComponent";
 
 const IndexPage: React.FC<PageProps> = () => {
+  const url = 'https://api.monobank.ua/personal/clientinfo';
+  const token = 'uY9T1tDFnuxwo3hpIx9-dD-GWW3m7gUcg6EACCPHbUNk';
+  
+  const headers = {
+    'X-Token': token
+  };
+  
+  fetch(url, {
+    method: 'GET',
+    headers: headers
+  })
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    return response.json();
+  })
+  .then(data => {
+    console.log(data);
+  })
+  .catch(error => {
+    console.error('There was a problem with your fetch operation:', error);
+  });
+  
+
   return (
     <main >
       <Box sx={{ flexGrow: 1 }}>
@@ -32,7 +57,7 @@ const IndexPage: React.FC<PageProps> = () => {
       </h1>  
       <h2>
         <Link to="/admin/">Admin</Link>
-        <a href="instagram://library?AssetPath=https://images.app.goo.gl/2nLGmXra4gRKVhTk6&InstagramCaption=%D1%86%D0%B5%20%D0%BA%D0%BE%D1%82%D0%B8%D0%BA" target="_blank">Відкрити Instagram</a>
+        {/* <a href="instagram://library?AssetPath=https://images.app.goo.gl/2nLGmXra4gRKVhTk6&InstagramCaption=%D1%86%D0%B5%20%D0%BA%D0%BE%D1%82%D0%B8%D0%BA" target="_blank">Відкрити Instagram</a> */}
 
       </h2>
 

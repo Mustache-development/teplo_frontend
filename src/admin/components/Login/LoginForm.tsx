@@ -16,7 +16,10 @@ export default function SignIn({onLoginSucces}) {
       };
       console.log(requestBody)
 
-      const apiUrl = 'https://teplo-back.onrender.com/api/auth/login';
+      console.log(process.env.REAC)
+      const baseUrl = process.env.BACKEND_URL;
+      console.log(baseUrl);
+      const apiUrl = `${baseUrl}/auth/login`;
       const response = await fetch(apiUrl, {
         method: 'POST',
         headers: {
@@ -30,11 +33,13 @@ export default function SignIn({onLoginSucces}) {
         console.log(response)
         if (token) {
           console.log('Успішна авторизація:');
-          onLoginSucces();
+          // onLoginSucces();
         }
         // onSubmit({ email, password });
         console.log(token)
         saveAuthToken(token)
+        window.location.replace("/admin");
+
       } else {
         console.error('Помилка на бекенді:', await response.json());
       }

@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { getPosts } from './postService';
+import { StaticImage } from "gatsby-plugin-image"
+import { Image } from "gatsby-image"
 
 interface Post {
-  id: number;
-  title: string;
-  content: string;
+  _id: number;
+  text: string;
+  photo: string[];
 }
 
 const PostListComponent: React.FC = () => {
@@ -20,8 +22,9 @@ const PostListComponent: React.FC = () => {
   const fetchPosts = async () => {
     try {
       const response = await getPosts(); // Викликаємо функцію отримання постів
-      console.log(responce)
+      console.log(response)
       setPosts(response.posts); // Встановлюємо отримані пости в стан
+      console.log(posts)
     } catch (error) {
       console.error('Помилка при отриманні постів:', error);
     }
@@ -31,12 +34,22 @@ const PostListComponent: React.FC = () => {
     <div>
       <h2>Список постів</h2>
       <ul>
-        {posts.map((post) => (
-          <li key={post.id}>
+        {posts?.map((post) => {
+          let imgUrl = post.photo[0]?.replace('localhost:3000', 'localhost:5000')
+          console.log(imgUrl)
+          return (
+            <li key={post.id}>
             <h3>{post.title}</h3>
-            <p>{post.content}</p>
+            <p>{post.text}</p>
+            <p>
+              { post.photo[0] ? (<img src={imgUrl} alt="My Image" />) : ('')}
+            </p>
           </li>
-        ))}
+          )
+          
+        })
+          
+        }
       </ul>
     </div>
   );

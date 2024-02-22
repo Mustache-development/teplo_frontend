@@ -2,7 +2,7 @@
 import React from "react";
 import {useState, useEffect} from "react";
 import { Link } from "gatsby";
-import LoginPage from './components/Login/LoginForm'
+import LoginPage from './components/Login/Login'
 import AdminPage from './components/AdminPage/AdminPage'
 
 const Admin: React.FC = () => {

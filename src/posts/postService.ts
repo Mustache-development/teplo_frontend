@@ -1,8 +1,10 @@
 // Функція для отримання постів
 export const getPosts = async () => {
     console.log('getPost work')
+    const baseUrl = process.env.BACKEND_URL;
     try {
-      const apiUrl = 'https://teplo-back.onrender.com/api/posts';
+      const apiUrl = `${baseUrl}/posts`;
+      console.log(apiUrl)
       
       // Отримання токену з локального сховища
       const authToken = localStorage.getItem('authToken');
@@ -19,7 +21,8 @@ export const getPosts = async () => {
   
         if (response.ok) {
           const result = await response.json();
-          console.log('Пости:', result.posts);
+          console.log('Пости:', result);
+          return result
         } else {
           console.error('Помилка при отриманні постів:', await response.json());
         }
