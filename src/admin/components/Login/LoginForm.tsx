@@ -16,8 +16,8 @@ export default function SignIn({onLoginSucces}) {
       };
       console.log(requestBody)
 
-      console.log(process.env.REAC)
-      const baseUrl = process.env.BACKEND_URL;
+      // const baseUrl = process.env.BACKEND_URL;
+      const baseUrl = 'https://teplo-back.onrender.com/api'
       console.log(baseUrl);
       const apiUrl = `${baseUrl}/auth/login`;
       const response = await fetch(apiUrl, {
