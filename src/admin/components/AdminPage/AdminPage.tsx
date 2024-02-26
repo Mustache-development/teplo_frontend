@@ -9,7 +9,7 @@ const Admin: React.FC = (props) => {
   const authToken = localStorage.getItem('authToken')
   const formattedToken = authToken ? authToken.replace(/"/g, '') : '';
   const [isAuth, setIsAuth] = useState(false);
-  const baseUrl = process.env.BACKEND_URL;
+  const baseUrl = process.env.GATSBY_BACKEND_URL;
 
   useEffect(() => {
     // Перевірка наявності токену при кожному рендері компонента
@@ -86,7 +86,7 @@ const Admin: React.FC = (props) => {
     setIsAuth(true);
   }
 
-  return isAuth ? <AdminUI handleSave={handleSave} handleLogOut={handleLogOut} {...props} /> : <Login onLoginSucces={onLoginSucces} />;
+  return isAuth ? <AdminUI handleSave={handleSave} handleLogOut={handleLogOut} handleToSite={handleToSite} {...props} /> : <Login onLoginSucces={onLoginSucces} />;
 };
 
 export default Admin;
