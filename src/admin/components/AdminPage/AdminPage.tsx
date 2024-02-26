@@ -86,7 +86,7 @@ const Admin: React.FC = (props) => {
     setIsAuth(true);
   }
 
-  return isAuth ? <AdminUI handleSave={handleSave} handleLogOut={handleLogOut} handleToSite={handleToSite} {...props} /> : <Login onLoginSucces={onLoginSucces} />;
+  return isAuth ? <AdminUI handleSave={handleSave} handleLogOut={handleLogOut} {...props} /> : <Login onLoginSucces={onLoginSucces} />;
 };
 
 export default Admin;
