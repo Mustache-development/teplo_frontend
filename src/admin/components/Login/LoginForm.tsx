@@ -24,7 +24,6 @@ export default function SignIn({onLoginSucces}) {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': 'Bearer your-access-token',
         },
         body: JSON.stringify(requestBody),
       });

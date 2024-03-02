@@ -8,13 +8,12 @@
         handleToSite: () => void;
     }
 
-    const AdminUI: React.FC<AdminUIProps> = ({ handleSave, handleLogOut, handleToSite }) => {
+    const AdminUI: React.FC<AdminUIProps> = ({ handleSave, handleLogOut, sendMonoToken }) => {
 
             interface FormData {
             email: string;
             telegram: string;
             tokenTelegramBot: string;
-            tokenMonobank: string;
             password: { 
                         currentPassword: string; 
                         newPassword: string 
@@ -52,6 +51,7 @@
         }
 
         const handleSaveClick = (e: React.MouseEvent<HTMLButtonElement>, name: string) => {
+            console.log(e)
             console.log(formData[name]);
             console.log(name)
             handleSave(name, formData[name]);
@@ -68,7 +68,7 @@
                     
                     <Grid container spacing={2} alignItems="center">
                         {Object.entries(formData).map(([key, value]) => (
-                            key !== "password" && (
+                            key !== "password" && key !== "tokenMonobank" && (
                                 <React.Fragment key={key}>
                                     <Grid item xs={9}>
                                         <TextField
@@ -132,6 +132,31 @@
                             >
                                 Зберегти
                             </Button>
+                        </Grid>
+
+                        {/* --- monobank --- */}
+                        <Grid item xs={9}>
+                            <TextField
+                                fullWidth
+                                label="Токен Монобанк"
+                                name={"tokenMonobank"}
+                                variant="outlined"
+                                size="standard"
+                                value={formData.tokenMonobank}
+                                onChange={handleInputChange}
+                            />
+                        </Grid>
+                        <Grid item xs={3}>
+                        <Button 
+                            variant="contained" 
+                            color="primary" 
+                            onClick={(e) => sendMonoToken(formData.tokenMonobank)} 
+                            sx={{ marginLeft: 0 }} 
+                            size="large"
+                            style={{ width: '100%' }}
+                        >
+                            Відправити
+                        </Button>
                         </Grid>
                         <Grid item xs={6}>
                             <Box display="flex" width="100%">

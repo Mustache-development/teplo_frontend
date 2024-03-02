@@ -3,7 +3,7 @@ export const getPosts = async () => {
     console.log('getPost work')
     const baseUrl = process.env.BACKEND_URL;
     try {
-      const apiUrl = `${baseUrl}/posts`;
+      const apiUrl = `https://teplo-back.onrender.com/api/posts`;
       console.log(apiUrl)
       
       // Отримання токену з локального сховища

@@ -10,31 +10,9 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import PaidIcon from '@mui/icons-material/Paid';
 import PostListComponent from "../posts/PostListComponent";
+import Mono from '../mono/monoService'
 
 const IndexPage: React.FC<PageProps> = () => {
-  const url = 'https://api.monobank.ua/personal/clientinfo';
-  const token = 'uY9T1tDFnuxwo3hpIx9-dD-GWW3m7gUcg6EACCPHbUNk';
-  
-  const headers = {
-    'X-Token': token
-  };
-  
-  fetch(url, {
-    method: 'GET',
-    headers: headers
-  })
-  .then(response => {
-    if (!response.ok) {
-      throw new Error('Network response was not ok');
-    }
-    return response.json();
-  })
-  .then(data => {
-    console.log(data);
-  })
-  .catch(error => {
-    console.error('There was a problem with your fetch operation:', error);
-  });
   
 
   return (
@@ -66,6 +44,7 @@ const IndexPage: React.FC<PageProps> = () => {
         src="../images/photo1.jpg"
       />
       <PostListComponent />
+      <Mono />
     </main>
   )
 }

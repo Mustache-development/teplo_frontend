@@ -21,7 +21,37 @@ const Admin: React.FC = (props) => {
     }
   }, [authToken]); 
 
+  // send token to monobank
+  const sendMonoToken = async(data: string) => {
+    console.log(`Token monobank "${data}"`)
+    const apiUrl = `${baseUrl}/admin/token-monobank`;
+    console.log(apiUrl)
+    const bodyContent = {token: data}
+    console.log(JSON.stringify(bodyContent))
+    try {
+      const response = await fetch(apiUrl, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${formattedToken}`,
+        },
+        body: JSON.stringify(bodyContent),
+      });
+      console.log(response)
 
+      if (response.ok) {
+        const responseData = await response.json()
+        console.log(`Successfully send token monobank`);
+        console.log(responseData.message);
+        console.log(responseData.code);
+      } else {
+          console.error(`Error saving settings for :`, response.status, response.statusText);
+      }
+    } catch (error) {
+      console.error('Network error:', error);
+    }
+  }
+  
   const handleSave = async (name: string, data: string) => {
     console.log('handleSave from AdminPage');
     console.log(name);
@@ -30,7 +60,6 @@ const Admin: React.FC = (props) => {
       email: "email?newEmail",
       telegram: "id-telegram?newIdTelegram",
       tokenTelegramBot: "token-telegram-bot?newTokenTelegramBot",
-      tokenMonobank: "token-monobank?newTokenMonobank",
       password: "password"
     }
 
@@ -87,7 +116,7 @@ const Admin: React.FC = (props) => {
     setIsAuth(true);
   }
 
-  return isAuth ? <AdminUI handleSave={handleSave} handleLogOut={handleLogOut} {...props} /> : <Login onLoginSucces={onLoginSucces} />;
+  return isAuth ? <AdminUI handleSave={handleSave} handleLogOut={handleLogOut} sendMonoToken={sendMonoToken} {...props} /> : <Login onLoginSucces={onLoginSucces} />;
 };
 
 export default Admin;
