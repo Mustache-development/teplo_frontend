@@ -20,6 +20,13 @@
                     };
         }
         
+        const fieldsDescription = {
+            email: "Змінити електронну адресу",
+            telegram: "Змінити телеграм канал",
+            tokenTelegramBot: "Змінити телеграм бота",
+            tokenMonobank: "Змінити рахунок монобанк",
+            password: "Змінити пароль"
+        }
         const [formData, setFormData] = React.useState<FormData>({
             email: "",
             telegram: "",
@@ -70,6 +77,11 @@
                         {Object.entries(formData).map(([key, value]) => (
                             key !== "password" && key !== "tokenMonobank" && (
                                 <React.Fragment key={key}>
+                                    <Grid item xs={12}>
+                                        <Typography>
+                                            {fieldsDescription[key]}
+                                        </Typography>
+                                    </Grid>
                                     <Grid item xs={9}>
                                         <TextField
                                             fullWidth
