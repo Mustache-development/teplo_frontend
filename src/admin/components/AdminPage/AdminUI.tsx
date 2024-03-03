@@ -109,6 +109,14 @@
                             )
                         ))}
 
+                        
+                        {/* Password fields */}
+                        <Grid item xs={12}>
+                            <Typography>
+                                {fieldsDescription.password}
+                            </Typography>
+                        </Grid>
+
                         <Grid item xs={4}>
                             <TextField
                                 fullWidth
@@ -147,6 +155,11 @@
                         </Grid>
 
                         {/* --- monobank --- */}
+                        <Grid item xs={12}>
+                            <Typography>
+                                {fieldsDescription.tokenMonobank}
+                            </Typography>
+                        </Grid>                        
                         <Grid item xs={9}>
                             <TextField
                                 fullWidth
