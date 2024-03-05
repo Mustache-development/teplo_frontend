@@ -1,6 +1,7 @@
-    import React from 'react';
-    import { Container, TextField, Button, Box, Typography, Grid } from '@mui/material';
+    import React, {useState} from 'react';
+    import { Container, TextField, Button, Box, Typography, Grid, IconButton, InputAdornment} from '@mui/material';
     import { Link } from 'gatsby'
+    import { Visibility, VisibilityOff } from '@mui/icons-material';
 
     interface AdminUIProps {
         handleSave: (name: string, data: string) => void;
@@ -20,13 +21,22 @@
                     };
         }
         
-        const fieldsDescription = {
+        const fieldsTitles = {
             email: "Змінити електронну адресу",
             telegram: "Змінити телеграм канал",
-            tokenTelegramBot: "Змінити телеграм бота",
+            tokenTelegramBot: "Змінити телеграм бота.",
             tokenMonobank: "Змінити рахунок монобанк",
             password: "Змінити пароль"
         }
+
+        const fieldsDescription = {
+            email: "Напишіть нову електронну адресу для входа в адміністративну панель.",
+            telegram: "Змінити телеграм канал",
+            tokenTelegramBot: "Токен телеграм бота необхідно отримати у @botFather.",
+            tokenMonobank: "Вcтавте в поле токен з власного кабінета в Монобанк - https://api.monobank.ua/",
+            password: "Змінити пароль"
+        }
+
         const [formData, setFormData] = React.useState<FormData>({
             email: "",
             telegram: "",
@@ -63,6 +73,17 @@
             console.log(name)
             handleSave(name, formData[name]);
         };
+
+        const [showPassword, setShowPassword] = useState(false);
+        const [showNewPassword, setShowNewPassword] = useState(false);
+
+        const handleTogglePasswordVisibility = () => {
+                setShowPassword(!showPassword);
+            };
+
+            const handleToggleNewPasswordVisibility = () => {
+                setShowNewPassword(!showNewPassword);
+            };  
 
         return (
             <Container>
@@ -124,9 +145,18 @@
                                 name="currentPassword"
                                 variant="outlined"
                                 size="standard"
-                                type="password"
+                                type={showPassword ? 'text' : 'password'}
                                 value={formData.password.currentPassword}
                                 onChange={handleInputChange}
+                                InputProps={{
+                                    endAdornment: (
+                                        <InputAdornment position="end">
+                                            <IconButton onClick={handleTogglePasswordVisibility}>
+                                                {showPassword ? <VisibilityOff /> : <Visibility />}
+                                            </IconButton>
+                                        </InputAdornment>
+                                    ),
+                                }}
                             />
                         </Grid>
                         <Grid item xs={5}>
@@ -136,9 +166,18 @@
                                 name="newPassword"
                                 variant="outlined"
                                 size="standard"
-                                type="password"
+                                type={showNewPassword ? 'text' : 'password'}
                                 value={formData.password.newPassword}
                                 onChange={handleInputChange}
+                                InputProps={{
+                                    endAdornment: (
+                                        <InputAdornment position="end">
+                                            <IconButton onClick={handleToggleNewPasswordVisibility}>
+                                                {showNewPassword ? <VisibilityOff /> : <Visibility />}
+                                            </IconButton>
+                                        </InputAdornment>
+                                    ),
+                                }}
                             />
                         </Grid>
                         <Grid item xs={3} >
