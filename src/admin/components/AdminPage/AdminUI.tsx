@@ -240,11 +240,18 @@
                                 <Button 
                                     variant="contained" 
                                     color="primary" 
-                                    
+                                    sx = {{
+                                        '&: visited': {
+                                            color: 'inherit',
+                                            }
+                                    }}
                                     size="large"
                                     fullWidth  // Встановлює кнопку на всю доступну ширину Box
                                 >
-                                    <Link to='/'>
+                                    <Link 
+                                        to='/'
+                                        style={{ color: 'inherit', textDecoration: 'inherit' }}
+                                    >
                                         До сайту
                                     </Link>
                                 </Button>
