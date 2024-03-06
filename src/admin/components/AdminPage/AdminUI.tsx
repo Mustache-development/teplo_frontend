@@ -147,7 +147,6 @@
                         Адміністративна панель
                     </Typography>
                 </Box>
-
                     
                 <Grid container spacing={2} alignItems="center">
                     
@@ -196,7 +195,6 @@
                             </React.Fragment>
                         )
                     ))}
-
                     
                     {/* Password fields */}
                     <Grid item xs={12}>
@@ -304,31 +302,44 @@
                         </Button>
                     </Grid>
 
-                    <List>
+                    <Grid container style={{ 
+                                            marginTop: '20px',
+                                            paddingLeft: '16px' 
+                                            }}
+                    >
+                        <Grid item xs={12}>
+                            <Typography variant="h5">
+                                Виберіть яку банку відображати на сайті
+                            </Typography>
+                        </Grid>
                         {monoJars.map((jar) => (
-                            <ListItem key={jar.id}>
-                                <Grid container >
+                                <Grid container sx={{ marginTop: '10px' }}>
                                     <Grid item xs={8}>
-                                        <ListItemText primary={jar.title} />
+                                        <Typography>{jar.title}</Typography>
                                     </Grid>
-                                    <Grid item xs={4} sx={{ textAlign: 'right' }}>
-                                        <Button 
-                                            variant="contained" 
-                                            color="primary" 
+                                    <Grid item xs={4} >
+                                        <Button
+                                            fullWidth
+                                            variant="contained"
+                                            color="primary"
                                             size="large"
                                             onClick={() => sendJarId(jar.id)}
                                             disabled={isJarIdLoading[jar.id]}
-                                            startIcon={isJarIdLoading[jar.id] ? <CircularProgress size={20} color="inherit" /> : null}                                
+                                            startIcon={
+                                            isJarIdLoading[jar.id] ? (
+                                                <CircularProgress size={20} color="inherit" />
+                                            ) : null
+                                            }
                                         >
                                             Обрати
                                         </Button>
                                     </Grid>
                                 </Grid>
-                            </ListItem>
                         ))}
-                    </List>
+                        </Grid>
+                </Grid>
 
-                    <Grid container spacing={1}>
+                <Grid sx={{ marginTop: 2 }} container spacing={2} rowSpacing={1} columnSpacing={1} alignItems="center">
                         <Grid item xs={6}>
                             <Box display="flex" width="100%">
                                 <Button 
@@ -364,10 +375,8 @@
                                 </Button>
                             </Box>
                         </Grid>
-                    </Grid>
                 </Grid>
                 
-                                
                 <Snackbar
                     open={snackbarData.open}
                     onClose={handleClose}

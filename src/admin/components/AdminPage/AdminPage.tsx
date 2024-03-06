@@ -188,7 +188,7 @@ const Admin: React.FC = (props) => {
         console.log(`Successfully saved settings`);
         console.log(responseData.message);
         console.log(responseData.code);
-        responseData.code === '200' 
+        responseData.code == 200 
           ? handleNetworkRequest("дані успішно збережені", true)
           : handleNetworkRequest("дані не збережено", false)
       } else {
