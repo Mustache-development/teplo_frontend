@@ -60,6 +60,7 @@ const Admin: React.FC = (props) => {
         setMonoJars(responseData.jars)
       } else {
           console.error(`Error saving settings for :`, response.status, response.statusText);
+          handleNetworkRequest("дані не збережено", false)
       }
     } catch (error) {
       console.error('Network error:', error);
@@ -93,14 +94,35 @@ const Admin: React.FC = (props) => {
 
       if (response.ok) {
         const responseData = await response.json()
-        console.log(`Successfully update jar`);
-        
+        console.log(responseData.code);
+        responseData.code === 200 
+          ? handleNetworkRequest("дані успішно збережені", true)
+          : handleNetworkRequest("дані не збережено", false)        
       } else {
           console.error(`Error saving settings for :`, response.status, response.statusText);
+          handleNetworkRequest("дані не збережено", false)        
       }
     } catch (error) {
       console.error('Network error:', error);
     }
+  }
+
+  interface SnackbarData {
+      open: boolean;
+      text: string;
+      isSuccess: boolean;
+  }
+
+  const [snackbarData, setSnackbarData] = useState<SnackbarData>({ open: false, text: "", isSuccess: true });
+
+  const handleNetworkRequest = (text: string, isSuccess: boolean) => {
+    setSnackbarData({
+      open: true,
+      text: text,
+      isSuccess: isSuccess
+    })
+    snackbarData.text = text;
+    snackbarData.isSuccess = isSuccess;
   }
 
   const [isLoading, setIsLoading] = useState<{ [key: string]: boolean }>({
@@ -166,8 +188,12 @@ const Admin: React.FC = (props) => {
         console.log(`Successfully saved settings`);
         console.log(responseData.message);
         console.log(responseData.code);
+        responseData.code === '200' 
+          ? handleNetworkRequest("дані успішно збережені", true)
+          : handleNetworkRequest("дані не збережено", false)
       } else {
           console.error(`Error saving settings for :`, response.status, response.statusText);
+          handleNetworkRequest("відбулась помилка", false)
       }
     } catch (error) {
       console.error('Network error:', error);
@@ -194,6 +220,8 @@ const Admin: React.FC = (props) => {
                     isJarsLoading={isJarsLoading}
                     isJarIdLoading={isJarIdLoading}
                     sendJarId={sendJarID}
+                    snackbarData={snackbarData}
+                    setSnackbarData={setSnackbarData}
                     {...props} 
                   /> : <Login onLoginSucces={onLoginSucces}/>;
 };
