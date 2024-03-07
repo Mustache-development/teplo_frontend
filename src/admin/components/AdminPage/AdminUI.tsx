@@ -308,9 +308,12 @@
                                             }}
                     >
                         <Grid item xs={12}>
-                            <Typography variant="h5">
-                                Виберіть яку банку відображати на сайті
-                            </Typography>
+                            {monoJars && monoJars.length>0 && (
+                                <Typography variant="h5">
+                                    Виберіть яку банку відображати на сайті
+                                </Typography>
+                            )}
+                                
                         </Grid>
                         {monoJars.map((jar) => (
                                 <Grid container sx={{ marginTop: '10px' }}>
