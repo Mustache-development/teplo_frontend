@@ -12,6 +12,13 @@ const Admin: React.FC = (props) => {
   // const baseUrl = process.env.GATSBY_BACKEND_URL;
   const baseUrl = 'https://teplo-back.onrender.com/api'
 
+  const handleAuthFail = (resposeCode: number | string): void => {
+    if (resposeCode === 401 || resposeCode === "401") {
+      console.log('autirization is fail')
+      handleLogOut();
+    }
+  }
+
   useEffect(() => {
     // Перевірка наявності токену при кожному рендері компонента
     if (authToken) {
@@ -57,6 +64,7 @@ const Admin: React.FC = (props) => {
         console.log(responseData.message);
         console.log(responseData.code);
         console.log(responseData.jars)
+        handleAuthFail(responseData.code)
         setMonoJars(responseData.jars)
       } else {
           console.error(`Error saving settings for :`, response.status, response.statusText);
@@ -176,6 +184,7 @@ const Admin: React.FC = (props) => {
           Authorization: `Bearer ${formattedToken}`,
         },
         body: JSON.stringify(bodyContent),
+        
       });
 
       setIsLoading(prevState => ({
@@ -185,9 +194,11 @@ const Admin: React.FC = (props) => {
 
       if (response.ok) {
         const responseData = await response.json()
+        console.log(response)
         console.log(`Successfully saved settings`);
         console.log(responseData.message);
         console.log(responseData.code);
+        handleAuthFail(responseData.code)
         responseData.code == 200 
           ? handleNetworkRequest("дані успішно збережені", true)
           : handleNetworkRequest("дані не збережено", false)
