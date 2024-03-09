@@ -12,6 +12,7 @@ const MonoService: React.FC = () => {
 
         setStatement(response.data);
         console.log(response.data)
+        // console.log(response.data.transactions)
       } catch (error) {
         console.error("Error fetching bank statement:", error);
       }
