@@ -67,7 +67,7 @@ const handleNetworkRequest = (text: string, isSuccess: boolean) => {
         console.log(response)
         saveAuthToken(token)
         
-        // window.location.replace("/admin");
+        window.location.replace("/admin");
 
       } else {
         console.error('Помилка на бекенді:', await response.json());
