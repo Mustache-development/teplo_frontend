@@ -196,8 +196,6 @@ const Admin: React.FC = (props) => {
         const responseData = await response.json()
         console.log(response)
         console.log(`Successfully saved settings`);
-        console.log(responseData.message);
-        console.log(responseData.code);
         handleAuthFail(responseData.code)
         responseData.code == 200 
           ? handleNetworkRequest("дані успішно збережені", true)

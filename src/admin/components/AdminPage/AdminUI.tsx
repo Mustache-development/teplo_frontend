@@ -214,7 +214,6 @@
                             label="Поточний пароль"
                             name="currentPassword"
                             variant="outlined"
-                            size="standard"
                             type={showPassword ? 'text' : 'password'}
                             value={formData.password.currentPassword}
                             onChange={handleInputChange}

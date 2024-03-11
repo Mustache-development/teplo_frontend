@@ -67,48 +67,4 @@ async updateTokenMonobank(req, newTokenMonobank: string) {
     }
   }
 
-  async updateActiveJar(req, newActiveJar: string) {
-    const token = this.tokenService.getBearerToken(req);
-
-    if (!newActiveJar || !token) {
-      return {
-        status: 400,
-        message: "Not enough arguments",
-      };
-    }
-
-    try {
-      const tokenData = await this.tokenService.validateJwtToken(token);
-      if (!tokenData.authorization) {
-        return {
-          code: 401,
-          message: "authorization fail",
-        };
-      }
-
-      const checkMonobank = await this.tokenMonobankModel.find();
-      if (
-        checkMonobank.length === 0 &&
-        !checkMonobank[0].jars.includes(newActiveJar)
-      ) {
-        throw "Invalid Monobank token or jar";
-      }
-
-      await this.tokenMonobankModel.findOneAndUpdate(
-        { _id: checkMonobank[0]._id },
-        { activeJar: newActiveJar }
-      );
-
-      return {
-        code: 200,
-        message: "Active jar monobank update",
-      };
-    } catch (err) {
-      console.log(err);
-      return {
-        code: 500,
-        message: "error server",
-      };
-    }
-  }
-}
+  
