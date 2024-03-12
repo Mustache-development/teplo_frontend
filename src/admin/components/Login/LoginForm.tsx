@@ -54,20 +54,22 @@ const handleNetworkRequest = (text: string, isSuccess: boolean) => {
       });
 
       if (response.ok) {
-        const { token } = await response.json();
-        
-        if (token) {
+        const responseData = await response.json();
+        console.log(responseData)
+        console.log(responseData.token)
+        const token = responseData.token;
+        if (responseData.token) {
           console.log('Успішна авторизація:');
           handleNetworkRequest("Авторизація успішна", true)
-          // onLoginSucces();
+          saveAuthToken(token)
+          setIsLoading(false)
+          window.location.replace("/admin");
         } else {
           handleNetworkRequest("Авторизація не відбулась", false)
+          setIsLoading(false)
+          console.log(response)
         }
-        setIsLoading(false)
-        console.log(response)
-        saveAuthToken(token)
         
-        window.location.replace("/admin");
 
       } else {
         console.error('Помилка на бекенді:', await response.json());
