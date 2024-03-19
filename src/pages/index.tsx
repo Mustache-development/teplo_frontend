@@ -39,10 +39,10 @@ const IndexPage: React.FC<PageProps> = () => {
 
       </h2>
 
-      <StaticImage
+      {/* <StaticImage
         alt="Gatsby G Logo"
         src="../images/photo1.jpg"
-      />
+      /> */}
       <PostListComponent />
       <Mono />
     </main>

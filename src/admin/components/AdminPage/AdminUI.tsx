@@ -165,7 +165,7 @@
                                 </Grid>
                                 
                                 {/* Form */}
-                                <Grid item xs={12} md={9}>
+                                <Grid item xs={12} md={8}>
                                     <TextField
                                         fullWidth
                                         label={key}
@@ -178,7 +178,7 @@
                                 </Grid>
                                 
                                 {/* Button */}
-                                <Grid item xs={12} md={3}>
+                                <Grid item xs={12} md={4}>
                                     <Button 
                                         variant="contained" 
                                         color="primary" 
@@ -189,7 +189,24 @@
                                         disabled={isLoading[key]}
                                         // startIcon={isLoading[key] ? <CircularProgress size={20} color="inherit" /> : null}
                                     >
-                                        {isLoading[key] ? 'Завантаження...' : 'Зберегти'}
+                                        {isLoading[key] 
+                                            ?   <>
+                                                    <CircularProgress 
+                                                        size={20} color="inherit" 
+                                                        sx={{
+                                                            color: 'black',
+                                                            position: 'absolute',
+                                                            top: '50%',
+                                                            left: '50%',
+                                                            marginTop: '-12px',
+                                                            marginLeft: '-12px',
+                                                        }}
+                                                    />
+                                                    Завантаження...
+                                                    
+                                                </>
+                                            : 'Зберегти'
+                                        }
                                     </Button>
                                 </Grid>
                             </React.Fragment>
@@ -207,8 +224,8 @@
                             {fieldsDescription.password}
                         </Typography>
                     </Grid>
-
-                    <Grid item xs={12} md={9}>
+                    
+                    <Grid item xs={12} md={4}>
                         <TextField
                             fullWidth
                             label="Поточний пароль"
@@ -228,10 +245,8 @@
                             }}
                         />
                     </Grid>
-                    
-                    
-                    
-                    <Grid item xs={12} md={9}>
+                                        
+                    <Grid item xs={12} md={4}>
                         <TextField
                             fullWidth
                             label="Новий пароль"
@@ -252,7 +267,7 @@
                             }}
                         />
                     </Grid>
-                    <Grid item xs={12} md={3} >
+                    <Grid item xs={12} md={4} >
                         <Button 
                             variant="contained" 
                             color="primary" 
@@ -262,8 +277,26 @@
                             style={{ width: '100%' }}
                             disabled={isLoading["password"]}
                         >
-                            {isLoading["password"] ? 'Завантаження...' : 'Зберегти'}
+                            
+                            {isLoading["password"] 
+                                            ?   <>
+                                                    <CircularProgress 
+                                                        size={20} color="inherit" 
+                                                        sx={{
+                                                            color: 'black',
+                                                            position: 'absolute',
+                                                            top: '50%',
+                                                            left: '50%',
+                                                            marginTop: '-12px',
+                                                            marginLeft: '-12px',
+                                                        }}
+                                                    />
+                                                    Завантаження...
+                                                </>
+                                            : 'Зберегти'
+                                        }
                         </Button>
+                        
                     </Grid>
 
                     {/* --- monobank --- */}
@@ -276,7 +309,7 @@
                         </Typography>
                     </Grid>
 
-                    <Grid item xs={12} md={9}>
+                    <Grid item xs={12} md={8}>
                         <TextField
                             fullWidth
                             label="Токен Монобанк"
@@ -287,7 +320,7 @@
                             onChange={handleInputChange}
                         />
                     </Grid>
-                    <Grid item xs={12} md={3}>
+                    <Grid item xs={12} md={4}>
                         <Button 
                             variant="contained" 
                             color="primary" 
@@ -297,7 +330,25 @@
                             style={{ width: '100%' }}
                             disabled={isJarsLoading}
                         >
-                            {isJarsLoading ? 'Завантаження...' : 'Відправити'}
+                            {isJarsLoading 
+                                ?   <>
+                                        <CircularProgress 
+                                            size={20} color="inherit" 
+                                            sx={{
+                                                color: 'black',
+                                                position: 'absolute',
+                                                top: '50%',
+                                                left: '50%',
+                                                marginTop: '-12px',
+                                                marginLeft: '-12px',
+                                            }}
+                                        />
+                                        Завантаження...
+                                    </>
+                                    
+                                : 'Відправити'
+                            }
+                            
                         </Button>
                     </Grid>
 
@@ -328,9 +379,9 @@
                                             onClick={() => sendJarId(jar.id)}
                                             disabled={isJarIdLoading[jar.id]}
                                             startIcon={
-                                            isJarIdLoading[jar.id] ? (
-                                                <CircularProgress size={20} color="inherit" />
-                                            ) : null
+                                                isJarIdLoading[jar.id] ? (
+                                                    <CircularProgress size={20} color="inherit" />
+                                                ) : null
                                             }
                                         >
                                             Обрати

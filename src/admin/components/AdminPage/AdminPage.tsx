@@ -20,13 +20,50 @@ const Admin: React.FC = (props) => {
   }
 
   useEffect(() => {
-    // Перевірка наявності токену при кожному рендері компонента
+    // Is authToken in localStorage
     if (authToken) {
       setIsAuth(true);
     } else {
       setIsAuth(false);
     }
   }, [authToken]); 
+
+  // is auth true
+  useEffect(() => {
+    const authVerify = async (authToken: string) => {
+      const apiUrl = `${baseUrl}/auth/verify`;
+      
+      try {
+        const response = await fetch(apiUrl, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${authToken}`,
+          },
+        });
+    
+        if (response.ok) {
+          const data = await response.json();
+          console.log(data); // Виведення результату запиту у консоль
+          if (data.code !== 200) {
+            console.log('авторизація не підтвердєжена')
+            localStorage.removeItem('authToken');
+            window.location.replace("/admin");
+          }
+          if (data.code === 2000) {
+            console.log('авторизація підтверджена')
+          }
+        } else {
+          console.error("Network error:", response.status, response.statusText);
+        }
+      } catch (error) {
+        console.error("Network error:", error);
+      }
+    }
+
+      authVerify(formattedToken);
+     
+  }, []); 
 
   // send token to monobank
   const [isJarsLoading, setIsJarsLoading] = useState<boolean>(false);
@@ -60,12 +97,18 @@ const Admin: React.FC = (props) => {
 
       if (response.ok) {
         const responseData = await response.json()
-        console.log(`Successfully send token monobank`);
-        console.log(responseData.message);
-        console.log(responseData.code);
-        console.log(responseData.jars)
-        handleAuthFail(responseData.code)
-        setMonoJars(responseData.jars)
+        if (responseData.code !== 200) {
+          handleNetworkRequest("помилка у токені", false)
+          
+        } else {
+          console.log(`Successfully send token monobank`);
+          console.log(responseData.message);
+          console.log(responseData.code);
+          console.log(responseData.jars)
+          handleAuthFail(responseData.code)
+          setMonoJars(responseData.jars)
+        }
+        
       } else {
           console.error(`Error saving settings for :`, response.status, response.statusText);
           handleNetworkRequest("дані не збережено", false)
