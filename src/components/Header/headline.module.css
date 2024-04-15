@@ -1,0 +1,91 @@
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;   
+    padding: 8px; 
+    height: 56px;
+    border: 0px solid black;
+    background: rgba(252, 252, 252, 0.7);
+
+}
+
+.menucontainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    
+    padding: 0;
+}
+
+.telegramcontainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    width: 40px;
+    height: 40px;
+    
+}
+
+.telegram {
+    width: 40px;
+    height: 40px;
+    margin-right: 8px;
+}
+
+.burgercontainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 36px;
+    height: 36px;
+    background-color: white;
+    border-radius: 50%;
+    border: 0;
+    
+}
+
+.burger {
+    width: 24px;
+    height: 24px;
+}
+
+.logo {
+    width: 84px;
+    height: 40px;
+    
+}
+
+.buttoncontainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    background-color: white;
+    height: 40px;
+    width: 120px;
+    border-radius: 30px;
+    padding: 4px;
+    
+}
+
+.button {
+    width: 113px;
+    height: 32px;
+    border: 0px solid white;
+    background: hsl(210, 79%, 22%);
+    color: white;
+    font-family: Montserrat;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 16px;
+    text-align: left;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+}

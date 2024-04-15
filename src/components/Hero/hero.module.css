@@ -1,0 +1,30 @@
+.container {
+    padding: 20px 16px 0 16px;
+}
+.header {
+    font-family: "Montserrat", sans-serif;
+    font-size: 20px;
+    font-weight: 900;
+    line-height: 32px;
+    color: #F1B92D;
+}
+
+.title {
+    font-family: "Exo 2", sans-serif;
+    font-size: 32px;
+    font-weight: 900;
+    line-height: 40px;
+    text-align: left;
+    color: #092958;
+}
+
+.description {
+    display: block;
+    font-family: "Montserrat", sans-serif;
+    width: 208px;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+    text-align: left;
+
+}
