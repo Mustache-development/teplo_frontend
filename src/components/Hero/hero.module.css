@@ -28,3 +28,45 @@
     text-align: left;
 
 }
+
+.buttoncontainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0;
+    gap: 12px;
+    margin: 72px 0;
+}
+
+.filledbutton {
+    width: 191px;
+    height: 36px;
+    border: 0px solid white;
+    background: hsl(210, 79%, 22%);
+    color: white;
+    font-family: "Montserrat", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 16px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 30px;
+}
+
+.outlinedbutton {
+    width: 191px;
+    height: 36px;
+    border: 1px solid hsl(210, 79%, 22%);
+    background: white;
+    color: hsl(210, 79%, 22%);
+    font-family: "Montserrat", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 16px;
+    text-align: center;
+    border-radius: 30px;
+    
+}

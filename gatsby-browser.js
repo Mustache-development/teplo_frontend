@@ -1,1 +1,2 @@
-import "typeface-montserrat"
+import "typeface-montserrat";
+import "./src/styles/styles.css";
