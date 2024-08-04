@@ -1,0 +1,29 @@
+.container {
+  margin: 0 16px 64px 16px;
+  padding: 40px 16px;
+  background: url("./pattern.png"), linear-gradient(127.48deg, #fffac5 12.35%, #fff294 50%);
+  border-radius: 30px;
+  background-repeat: no-repeat;
+}
+
+.text {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  text-align: left;
+  margin-bottom: 24px;
+}
+
+.buttonsContainer {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+}
+
+.cta {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 24px;
+  text-align: left;
+  margin: 0 16px 64px 16px;
+}

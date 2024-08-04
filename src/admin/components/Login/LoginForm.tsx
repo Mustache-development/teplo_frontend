@@ -1,10 +1,9 @@
-import * as React from 'react';
-import LoginUI from './LoginUI';
-import { saveAuthToken } from './authUtils';
+import * as React from "react";
+import LoginUI from "./LoginUI";
+import { saveAuthToken } from "./authUtils";
 
-export default function SignIn({onLoginSucces}) {
-  
-  const[isLoading, setIsLoading] = React.useState(false);
+export default function SignIn({ onLoginSucces }) {
+  const [isLoading, setIsLoading] = React.useState(false);
 
   interface SnackbarData {
     open: boolean;
@@ -12,87 +11,85 @@ export default function SignIn({onLoginSucces}) {
     isSuccess: boolean;
   }
 
-  const [snackbarData, setSnackbarData] = React.useState<SnackbarData>({ 
-                                                                        open: false, 
-                                                                        text: "", 
-                                                                        isSuccess: true ,
-                                                                      });
-  
-const handleNetworkRequest = (text: string, isSuccess: boolean) => {
+  const [snackbarData, setSnackbarData] = React.useState<SnackbarData>({
+    open: false,
+    text: "",
+    isSuccess: true,
+  });
+
+  const handleNetworkRequest = (text: string, isSuccess: boolean) => {
     setSnackbarData({
       open: true,
       text: text,
-      isSuccess: isSuccess
-    })
-    console.log('handleNetworkRequest')
-  }
+      isSuccess: isSuccess,
+    });
+    console.log("handleNetworkRequest");
+  };
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    const email = data.get('email') as string;
-    const password = data.get('password') as string;
-    setIsLoading(true)
+    const email = data.get("email") as string;
+    const password = data.get("password") as string;
+    setIsLoading(true);
 
     try {
       const requestBody = {
         email,
         password,
       };
-      console.log(requestBody)
+      console.log(requestBody);
 
       // const baseUrl = process.env.BACKEND_URL;
-      const baseUrl = 'https://teplo-back.onrender.com/api'
+      const baseUrl = "http://localhost:3000/api";
       console.log(baseUrl);
       const apiUrl = `${baseUrl}/auth/login`;
       const response = await fetch(apiUrl, {
-        method: 'POST',
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(requestBody),
       });
 
       if (response.ok) {
         const responseData = await response.json();
-        console.log(responseData)
-        console.log(responseData.token)
+        console.log(responseData);
+        console.log(responseData.token);
         const token = responseData.token;
         if (responseData.token) {
-          console.log('Успішна авторизація:');
-          handleNetworkRequest("Авторизація успішна", true)
-          saveAuthToken(token)
-          setIsLoading(false)
+          console.log("Успішна авторизація:");
+          handleNetworkRequest("Авторизація успішна", true);
+          saveAuthToken(token);
+          setIsLoading(false);
           window.location.replace("/admin");
         } else {
-          handleNetworkRequest("Авторизація не відбулась", false)
-          setIsLoading(false)
-          console.log(response)
+          handleNetworkRequest("Авторизація не відбулась", false);
+          setIsLoading(false);
+          console.log(response);
         }
-        
-
       } else {
-        console.error('Помилка на бекенді:', await response.json());
+        console.error("Помилка на бекенді:", await response.json());
       }
     } catch (error) {
-      console.error('Мережева помилка:', error);
-      handleNetworkRequest("Запит не успішний", false)
+      console.error("Мережева помилка:", error);
+      handleNetworkRequest("Запит не успішний", false);
 
-      setIsLoading(false)
+      setIsLoading(false);
     }
 
     console.log({
-      email: data.get('email'),
-      password: data.get('password'),
+      email: data.get("email"),
+      password: data.get("password"),
     });
   };
 
   return (
-    <LoginUI 
-      handleSubmit = {handleSubmit}
-      isLoading = {isLoading}
-      snackbarData = {snackbarData}
-      setSnackbarData = {setSnackbarData}
+    <LoginUI
+      handleSubmit={handleSubmit}
+      isLoading={isLoading}
+      snackbarData={snackbarData}
+      setSnackbarData={setSnackbarData}
     />
   );
 }

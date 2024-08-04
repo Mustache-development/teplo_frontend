@@ -1,0 +1,85 @@
+.container {
+  margin-top: 48px;
+  padding-left: 16px;
+  padding-right: 16px;
+  margin-bottom: 54px;
+}
+
+.blockTitle {
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 32px;
+  text-align: center;
+  margin: 48px auto 56px auto;
+}
+
+.text {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  text-align: center;
+  font-size: 16px;
+  margin-bottom: 32px;
+}
+
+.main {
+  border-radius: 24px;
+  background: url("./background.png");
+  background-size: cover;
+  background-color: #fff7bf;
+}
+
+.mainContent {
+  padding: 8px;
+  height: 60vh;
+  overflow-y: auto;
+}
+
+.mainTitle {
+  font-size: 18px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  background-color: var(--title-light-color);
+  border-radius: 24px 24px 0 0;
+  padding: 12px 0 10px 0;
+  text-decoration: none;
+}
+
+.mainTitle a {
+  text-decoration: none;
+}
+
+.cta {
+  border-radius: 24px;
+  font-weight: 600;
+  background-color: #fff294;
+  text-align: center;
+  padding: 12px 0 12px 0;
+  box-shadow: 0px 0px 10px 0px rgba(159, 146, 53, 1);
+  text-decoration: none;
+}
+
+.postGallery div {
+  width: 100%;
+  height: auto;
+  max-width: 300px;
+  max-height: 200px;
+  border: 3px solid red;
+}
+
+.galleryContainer {
+  margin-bottom: 16px;
+}
+
+.postContainer {
+  background-color: white;
+  border-radius: 16px;
+  padding: 8px;
+  margin-bottom: 16px;
+}
+
+.postText {
+  font-size: 16px;
+  line-height: 24px;
+}

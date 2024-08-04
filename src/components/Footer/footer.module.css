@@ -1,0 +1,75 @@
+.container {
+  background-color: #10253b;
+  background-image: url("./pattern.png");
+  background-repeat: repeat-x;
+  background-position: bottom center;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.logo {
+  margin: 24px auto 30px auto;
+}
+
+.cta {
+  width: 191px;
+  height: 32px;
+  top: 110px;
+  left: 120px;
+  padding: 8px 12px 8px 12px;
+  gap: 12px;
+  border-radius: 30px;
+  background-color: #0c3865;
+  color: #fcfcfc;
+  text-align: center;
+  margin: 0 auto 30px auto;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 16px;
+}
+
+.ancors {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  text-align: left;
+  color: #d8e4f0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 0 16px 16px 16px;
+}
+
+.socTitle {
+}
+
+.socIcons {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+}
+
+.socIcon {
+  margin-left: 16px;
+  width: 24px;
+  height: 24px;
+}
+
+.admin {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  text-align: left;
+  color: #8da0b3;
+}
+
+.email {
+  flex: 1;
+  overflow: auto;
+}
+
+.socialLinks {
+  /* flex: 1; */
+}

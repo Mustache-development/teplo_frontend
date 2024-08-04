@@ -1,0 +1,84 @@
+.container {
+  padding: 88px 16px 0 16px;
+}
+.header {
+  font-family: "Montserrat", sans-serif;
+  font-size: 20px;
+  font-weight: 900;
+  line-height: 32px;
+  color: #f1b92d;
+}
+
+.title {
+  font-family: "Exo 2";
+  font-size: 32px;
+  font-weight: 900;
+  line-height: 40px;
+  text-align: left;
+  color: #092958;
+}
+
+.description {
+  display: block;
+  font-family: "Montserrat", sans-serif;
+  width: 208px;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  text-align: left;
+}
+
+.buttoncontainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0;
+  gap: 12px;
+  margin: 72px 0 0 0;
+}
+
+.filledbutton {
+  width: 191px;
+  height: 36px;
+  border: 0px solid white;
+  background: hsl(210, 79%, 22%);
+  color: white;
+  font-family: "Montserrat", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 16px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 30px;
+  transition: all 0.5s ease;
+}
+
+.filledbutton:active {
+  border-image-source: linear-gradient(87deg, #3076be 1.5%, #011121 99.52%);
+  background: linear-gradient(275.82deg, #3177be 7.7%, #011121 72.63%);
+}
+
+.outlinedbutton {
+  width: 191px;
+  height: 36px;
+  border: 1px solid hsl(210, 79%, 22%);
+  background: white;
+  color: hsl(210, 79%, 22%);
+  font-family: "Montserrat", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 16px;
+  text-align: center;
+  border-radius: 30px;
+  transition: all 0.5s ease;
+}
+
+.outlinedbutton:active {
+  border: 2px solid;
+
+  border-image-source: linear-gradient(275.82deg, #3177be 7.7%, #011121 72.63%);
+  color: linear-gradient(275.82deg, #3177be 7.7%, #011121 72.63%);
+}

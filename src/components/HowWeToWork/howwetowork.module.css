@@ -1,0 +1,52 @@
+.container {
+  margin-left: 44px;
+  margin-right: 44px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.stepTitle {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  text-align: left;
+  margin-bottom: 16px;
+}
+
+.img {
+  width: 310px;
+}
+
+.stepsContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.stepsContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-bottom: 83px;
+}
+
+.stepItem {
+  margin-bottom: 8px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.ctaContainer {
+  background: url("./ctabackground.png") center/cover no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 24px;
+  height: 224px;
+  padding: 16px;
+}
