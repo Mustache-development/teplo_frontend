@@ -48,6 +48,12 @@ const config: GatsbyConfig = {
         path: `${__dirname}/src/admin/components/Login`,
       },
     },
+    {
+      resolve: "gatsby-plugin-env-variables",
+      options: {
+        whitelist: ["REACT_APP_BASE_URL"],
+      },
+    },
   ],
 };
 
