@@ -51,7 +51,7 @@ const config: GatsbyConfig = {
     {
       resolve: "gatsby-plugin-env-variables",
       options: {
-        whitelist: ["REACT_APP_BASE_URL"],
+        allowList: ["REACT_APP_BASE_URL"],
       },
     },
   ],
