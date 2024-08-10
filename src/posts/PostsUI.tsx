@@ -21,7 +21,10 @@ const PostsUI: React.FC<PostsUIProps> = ({ posts }) => {
               <li key={post.id}>
                 <h3>{post.title}</h3>
                 <p>{post.text}</p>
-                <p></p>
+
+                <p>
+                  {/* { post.photo[0] ? (<StaticImage src="https://teplo-back.onrender.com/upload/AQADedQxG8rriUt9.jpg" alt="My Image" />) : ('')} */}
+                </p>
               </li>
             );
           })}

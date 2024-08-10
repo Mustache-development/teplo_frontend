@@ -32,7 +32,9 @@ const Footer = () => {
 
       <div className={styles.ancors}>
         <div className={styles.admin}>Команда розробки</div>
-        <div className={styles.admin}>Адміністративна панель</div>
+        <a href="admin/" target="_blank">
+          <div className={styles.admin}>Адміністративна панель</div>
+        </a>
       </div>
     </div>
   );

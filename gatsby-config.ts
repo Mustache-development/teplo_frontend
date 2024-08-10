@@ -62,7 +62,12 @@ const config: GatsbyConfig = {
         },
       },
     },
-
+    {
+      resolve: "gatsby-plugin-env-variables",
+      options: {
+        allowList: ["REACT_APP_BASE_URL"],
+      },
+    },
   ],
 };
 
