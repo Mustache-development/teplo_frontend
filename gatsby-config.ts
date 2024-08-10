@@ -6,13 +6,10 @@ import type { GatsbyConfig } from "gatsby";
 
 const config: GatsbyConfig = {
   siteMetadata: {
-    title: `teplo front`,
-    siteUrl: `https://www.yourdomain.tld`
+    title: `Тепло на передову`,
+    siteUrl: `https://www.teplonaperedovu.com.ua`
   },
   pathPrefix: "/teplo",
-  // More easily incorporate content into your pages through automatic TypeScript type generation and better GraphQL IntelliSense.
-  // If you use VSCode you can also use the GraphQL plugin
-  // Learn more at: https://gatsby.dev/graphql-typegen
   graphqlTypegen: true,
   plugins: [`gatsby-plugin-styled-components`, "gatsby-plugin-sass", "gatsby-plugin-image", "gatsby-plugin-sitemap", {
     resolve: 'gatsby-plugin-manifest',
@@ -48,6 +45,24 @@ const config: GatsbyConfig = {
         path: `${__dirname}/src/admin/components/Login`,
       },
     },
+    {
+      resolve: `gatsby-plugin-webfonts`,
+      options: {
+        fonts: {
+          google: [
+            {
+              family: "Montserrat",
+              variants: ["400", "700"],
+            },
+            {
+              family: "Exo 2",
+              variants: ["400", "700"],
+            },
+          ],
+        },
+      },
+    },
+
   ],
 };
 

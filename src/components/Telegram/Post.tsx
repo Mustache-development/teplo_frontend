@@ -11,7 +11,7 @@ interface ImageData {
   className: string;
 }
 
-const Post: React.FC<{ text: string }> = ({ text }) => {
+const Post: React.FC<{ key: string; text: string }> = ({ key, text }) => {
   const [listOfImages, setListOfImages] = useState<ImageData[]>([]);
   const [error, setError] = useState<string | null>(null);
 
@@ -31,7 +31,7 @@ const Post: React.FC<{ text: string }> = ({ text }) => {
   });
 
   return (
-    <div className={styles.postContainer}>
+    <div key={key} className={styles.postContainer}>
       <div className={styles.galleryContainer}>
         <Gallery images={images} enableImageSelection={false} />
       </div>

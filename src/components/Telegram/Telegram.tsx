@@ -42,7 +42,7 @@ const Telegram: React.FC = () => {
           {/* <Post text="post text" />
           <Post text="post text" /> */}
           {posts.map((post) => (
-            <Post key={post._id} text={post.text} />
+            <Post key={post.text} text={post.text} />
           ))}
         </div>
         <a href="https://t.me/teplonaperedovu" target="_blank" rel="noopener noreferrer">
