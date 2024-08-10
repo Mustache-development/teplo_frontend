@@ -1,9 +1,9 @@
 // Функція для отримання постів
 export const getPosts = async () => {
   console.log("getPost work");
-  const baseUrl = process.env.BACKEND_URL;
+  const baseUrl = process.env.REACT_APP_BASE_URL;
   try {
-    const apiUrl = `http://localhost:3000/api/posts`;
+    const apiUrl = `${baseUrl}/posts`;
     console.log(apiUrl);
 
     // Отримання токену з локального сховища

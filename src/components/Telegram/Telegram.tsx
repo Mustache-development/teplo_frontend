@@ -5,21 +5,20 @@ import { getPosts } from "./postService";
 
 const Telegram: React.FC = () => {
   const [posts, setPosts] = React.useState([
-    { id: 0, text: "text1" },
-    { id: 1, text: "text2" },
-    { id: 2, text: "text3" },
+    { _id: "0", text: "text1" },
+    { _id: "1", text: "text2" },
+    { _id: "2", text: "text3" },
   ]);
 
   useEffect(() => {
-    // Викликаємо функцію для отримання постів при завантаженні компоненту
     fetchPosts();
   }, []);
 
   const fetchPosts = async () => {
     try {
-      const response = await getPosts(); // Викликаємо функцію отримання постів
+      const response = await getPosts();
       console.log(response);
-      setPosts(response.posts); // Встановлюємо отримані пости в стан
+      setPosts(response.posts);
       console.log(posts);
     } catch (error) {
       console.error("Помилка при отриманні постів:", error);
@@ -39,11 +38,10 @@ const Telegram: React.FC = () => {
         </div>
 
         <div className={styles.mainContent}>
-          {/* <Post text="post text" />
-          <Post text="post text" /> */}
-          {posts.map((post) => (
-            <Post key={post.text} text={post.text} />
-          ))}
+          {posts.map((post) => {
+            console.log("post", post);
+            return <Post key={post._id} text={post.text} />;
+          })}
         </div>
         <a href="https://t.me/teplonaperedovu" target="_blank" rel="noopener noreferrer">
           <div className={styles.cta}>Підписатись</div>
