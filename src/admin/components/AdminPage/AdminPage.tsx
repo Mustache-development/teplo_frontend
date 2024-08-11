@@ -8,7 +8,7 @@ const Admin: React.FC = (props) => {
   const authToken = localStorage.getItem("authToken");
   const formattedToken = authToken ? authToken.replace(/"/g, "") : "";
   const [isAuth, setIsAuth] = useState(false);
-  const baseUrl = process.env.BASE_URL;
+  const baseUrl = process.env.REACT_APP_BASE_URL;
   // const baseUrl = "https://teplo-back.onrender.com/api";
 
   const handleAuthFail = (resposeCode: number | string): void => {
@@ -43,7 +43,7 @@ const Admin: React.FC = (props) => {
 
         if (response.ok) {
           const data = await response.json();
-          console.log(data); // Виведення результату запиту у консоль
+          console.log(data);
           if (data.code !== 200) {
             console.log("авторизація не підтвердєжена");
             localStorage.removeItem("authToken");
@@ -186,7 +186,7 @@ const Admin: React.FC = (props) => {
     console.log(data);
     setIsLoading((prevState) => ({
       ...prevState,
-      [name]: true, // Встановлюємо стан isLoading для відповідної кнопки в true
+      [name]: true,
     }));
 
     const queryRequest = {

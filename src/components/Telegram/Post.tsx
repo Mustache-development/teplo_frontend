@@ -11,7 +11,12 @@ interface ImageData {
   className: string;
 }
 
-const Post: React.FC<{ text: string }> = ({ text }) => {
+interface PostProps {
+  text: string;
+  images: ImageData[]; // Масив об'єктів типу ImageData
+}
+
+const Post: React.FC<PostProps> = ({ text, images }) => {
   const [listOfImages, setListOfImages] = useState<ImageData[]>([]);
   const [error, setError] = useState<string | null>(null);
 
@@ -20,13 +25,9 @@ const Post: React.FC<{ text: string }> = ({ text }) => {
     return <div>Error: {error}</div>;
   }
 
-  const images = listOfImages.map((imageData, index) => {
+  const photo = images.map((imageData, index) => {
     return {
-      src: imageData.download_url,
-      width: imageData.width,
-      height: imageData.height,
-      isSelected: false,
-      caption: `Image ${index}`,
+      src: imageData,
       className: styles.galleryImage,
     };
   });
@@ -34,7 +35,7 @@ const Post: React.FC<{ text: string }> = ({ text }) => {
   return (
     <div className={styles.postContainer}>
       <div className={styles.galleryContainer}>
-        <Gallery images={images} enableImageSelection={false} />
+        <Gallery images={photo} enableImageSelection={false} />
       </div>
       <p className={styles.postText}>{text}</p>
     </div>

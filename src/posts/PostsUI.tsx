@@ -1,8 +1,16 @@
 import React from "react";
 import { StaticImage } from "gatsby-plugin-image";
+import Post from "../components/Telegram/Post";
+
+interface Post {
+  id: string;
+  title: string;
+  text: string;
+  photo: string[];
+}
 
 interface PostsUIProps {
-  posts: object;
+  posts: Post[];
 }
 
 const PostsUI: React.FC<PostsUIProps> = ({ posts }) => {
@@ -19,12 +27,7 @@ const PostsUI: React.FC<PostsUIProps> = ({ posts }) => {
             console.log(post.photo[0]);
             return (
               <li key={post.id}>
-                <h3>{post.title}</h3>
-                <p>{post.text}</p>
-
-                <p>
-                  {/* { post.photo[0] ? (<StaticImage src="https://teplo-back.onrender.com/upload/AQADedQxG8rriUt9.jpg" alt="My Image" />) : ('')} */}
-                </p>
+                <Post text={post.text} images={post.photo} />
               </li>
             );
           })}
