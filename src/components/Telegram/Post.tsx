@@ -4,6 +4,8 @@ let styles = require("./telegram.module.css");
 
 interface ImageData {
   src: string;
+  width?: number;
+  height?: number;
   isSelected?: boolean;
   caption?: string;
   className?: string;
@@ -11,11 +13,10 @@ interface ImageData {
 
 interface PostProps {
   text: string;
-  images: ImageData[];
+  images: string[];
 }
 
 const Post: React.FC<PostProps> = ({ text, images }) => {
-  const [listOfImages, setListOfImages] = React.useState<ImageData[]>([]);
   const [error, setError] = React.useState<string | null>(null);
 
   console.log("text", text);
@@ -23,14 +24,14 @@ const Post: React.FC<PostProps> = ({ text, images }) => {
     return <div>Error: {error}</div>;
   }
 
-  // Перетворюємо масив ImageData в формат, що потрібен для Gallery
-  const galleryImages = images.map((imageData, index) => ({
-    src: imageData.src,
-    width: 800, // Можна вказати значення за замовчуванням або отримати з API
-    height: 600, // Можна вказати значення за замовчуванням або отримати з API
-    isSelected: imageData.isSelected || false,
-    caption: imageData.caption || imageData.src,
-    className: imageData.className || styles.galleryImage,
+  // Формуємо масив для Gallery
+  const galleryImages = images.map((src, index) => ({
+    src,
+    width: 800, // Можна вказати реальні ширину та висоту, або отримати з API
+    height: 600,
+    isSelected: false, // за замовчуванням
+    caption: `Image ${index + 1}`, // або використовувати src
+    className: styles.galleryImage,
   }));
 
   return (
