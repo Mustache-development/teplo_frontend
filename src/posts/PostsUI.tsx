@@ -2,7 +2,7 @@ import React from "react";
 import { StaticImage } from "gatsby-plugin-image";
 import Post from "../components/Telegram/Post";
 
-interface Post {
+interface PostData {
   id: string;
   title: string;
   text: string;
@@ -10,18 +10,25 @@ interface Post {
 }
 
 interface PostsUIProps {
-  posts: Post[];
+  posts: PostData[];
 }
 
 const PostsUI: React.FC<PostsUIProps> = ({ posts }) => {
   console.log(posts);
+  const formatImages = (urls: string[]): ImageData[] => {
+    return urls.map((url, index) => ({
+      src: url,
+      width: 800,
+      height: 600,
+    }));
+  };
   return (
     <>
       <div style={{ height: "500px", overflowY: "scroll" }}>
         <h2>Список постів</h2>
         <ul>
           {posts?.map((post) => {
-            console.log(post);
+            console.log("post = ", post, post.photo);
             let imgUrl = post.photo[0]?.replace("localhost:3000", "localhost:5000");
             console.log(imgUrl);
             console.log(post.photo[0]);
