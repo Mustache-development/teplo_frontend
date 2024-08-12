@@ -6,16 +6,14 @@ export const getPosts = async () => {
     const apiUrl = `${baseUrl}/posts`;
     console.log(apiUrl);
 
-    // Отримання токену з локального сховища
     const authToken = localStorage.getItem("authToken");
 
-    // Перевірка наявності токену перед виконанням запиту
     if (authToken) {
       const response = await fetch(apiUrl, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${authToken}`, // Додайте токен до заголовків
+          Authorization: `Bearer ${authToken}`,
         },
       });
 
