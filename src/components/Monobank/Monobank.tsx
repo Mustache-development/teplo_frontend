@@ -1,9 +1,29 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 let styles = require("./monobank.module.css");
 import jar from "./jar.png";
 import Button from "../ButtonComponent/ButtonComponent";
+import axios from "axios";
 
 const Monobank = () => {
+  const [statement, setStatement] = useState<any>(null);
+
+  useEffect(() => {
+    console.log("monobank useEffect");
+    const fetchStatement = async () => {
+      try {
+        const response = await axios.get("https://teplo-backend.onrender.com/api/bank");
+
+        setStatement(response.data);
+        console.log(response.data);
+        // console.log(response.data.transactions)
+      } catch (error) {
+        console.error("Error fetching bank statement:", error);
+      }
+    };
+
+    fetchStatement();
+  }, []);
+
   return (
     <div className={styles.container}>
       <div className={styles.pattern} />

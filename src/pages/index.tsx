@@ -10,7 +10,7 @@ import Telegram from "../components/Telegram/Telegram";
 import Detailed from "../components/Detailed/Detailed";
 import Position from "../components/Position/Position";
 import OurTeam from "../components/OurTeam/OurTeam";
-// import Monobank from "../components/Monobank/Monobank";
+import Monobank from "../components/Monobank/Monobank";
 import Donators from "../components/Donators/Donators";
 import Contacts from "../components/Contacts/Contacts";
 import Footer from "../components/Footer/Footer";
@@ -24,7 +24,7 @@ const IndexPage: React.FC<PageProps> = () => {
       <Stat />
       <HowWeToWork />
       <Telegram />
-      {/* <Monobank /> */}
+      <Monobank />
       <Detailed />
       <Position />
       <OurTeam />
