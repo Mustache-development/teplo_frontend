@@ -18,7 +18,7 @@ const Telegram: React.FC = () => {
         const container = mainContantRef.current;
         container.scrollTop = container.scrollHeight - container.clientHeight;
       }
-    }, 100); // Невелика затримка, 100 мс
+    }, 100);
 
     return () => clearTimeout(timer);
   }, [loading, posts]);

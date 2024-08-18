@@ -1,11 +1,12 @@
 import React from "react";
-import { Gallery } from "react-grid-gallery";
+import Gallery from "react-photo-gallery";
+import { Image as GalleryImage } from "react-grid-gallery";
 let styles = require("./telegram.module.css");
 
 interface ImageData {
-  src: string;
-  width?: number;
-  height?: number;
+  base64Image?: string;
+  width: number;
+  height: number;
   isSelected?: boolean;
   caption?: string;
   className?: string;
@@ -13,31 +14,29 @@ interface ImageData {
 
 interface PostProps {
   text: string;
-  images: string[];
+  images: ImageData[];
 }
 
 const Post: React.FC<PostProps> = ({ text, images }) => {
   const [error, setError] = React.useState<string | null>(null);
 
-  console.log("text", text);
   if (error) {
     return <div>Error: {error}</div>;
   }
 
-  // Формуємо масив для Gallery
-  const galleryImages = images.map((src, index) => ({
-    src,
-    width: 800, // Можна вказати реальні ширину та висоту, або отримати з API
-    height: 600,
-    isSelected: false, // за замовчуванням
-    caption: `Image ${index + 1}`, // або використовувати src
+  const galleryImages = images.map((imageData, index) => ({
+    src: `data:image/jpeg;base64,${imageData.base64Image}`,
+    width: imageData.width || 800,
+    height: imageData.height || 600,
+    isSelected: imageData.isSelected || false,
+    caption: imageData.caption || `Image ${index + 1}`,
     className: styles.galleryImage,
   }));
 
   return (
     <div className={styles.postContainer}>
       <div className={styles.galleryContainer}>
-        <Gallery images={galleryImages} enableImageSelection={false} />
+        <Gallery photos={galleryImages} />
       </div>
       <p className={styles.postText}>{text}</p>
     </div>

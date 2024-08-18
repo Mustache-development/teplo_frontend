@@ -9,9 +9,10 @@ const Monobank = () => {
 
   useEffect(() => {
     console.log("monobank useEffect");
+    const baseUrl = process.env.REACT_APP_BASE_URL;
     const fetchStatement = async () => {
       try {
-        const response = await axios.get("https://teplo-backend.onrender.com/api/bank");
+        const response = await axios.get(`${baseUrl}/bank`);
 
         setStatement(response.data);
         console.log(response.data);

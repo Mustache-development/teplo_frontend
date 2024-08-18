@@ -31,6 +31,3 @@ export const getPosts = async () => {
     console.error("Мережева помилка:", error);
   }
 };
-
-// Виклик функції для отримання постів
-getPosts();
