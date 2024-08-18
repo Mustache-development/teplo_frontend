@@ -1,4 +1,8 @@
+[build]
+  command = "npm install --legacy-peer-deps && npm run build"
+  publish = "build"
+
 [[headers]]
-  for = "/*" # you can configure the correct paths here
+  for = "/*" # ви можете вказати конкретні шляхи тут
   [headers.values]
-    access-control-allow-origin = "*" 
+    access-control-allow-origin = "*"
