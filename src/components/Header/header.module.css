@@ -16,12 +16,12 @@
   position: absolute;
   top: 0;
   left: 0;
-  width: 430px;
-  height: 372px;
+  width: 1200px;
+  height: 675px;
   background-image: url("./first-display-background.png");
   background-repeat: no-repeat;
   background-position: top;
-  background-size: 430px auto;
+  background-size: contain;
   z-index: -1;
 }
 
