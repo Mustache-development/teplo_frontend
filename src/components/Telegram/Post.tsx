@@ -14,7 +14,6 @@ interface PostProps {
 }
 
 const Post: React.FC<PostProps> = ({ text, images }) => {
-  console.log("Post text, images", text, images);
   return (
     <div className={styles.postContainer}>
       <div className={styles.galleryContainer}>

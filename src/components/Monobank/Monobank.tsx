@@ -8,7 +8,6 @@ const Monobank = () => {
   const [statement, setStatement] = useState<any>(null);
 
   useEffect(() => {
-    console.log("monobank useEffect");
     const baseUrl = process.env.REACT_APP_BASE_URL;
     const fetchStatement = async () => {
       try {
@@ -24,6 +23,24 @@ const Monobank = () => {
 
     fetchStatement();
   }, []);
+
+  const calculateProgressTextPercentage = (balance: number, goal: number) => {
+    const minPercentage = 20;
+    const maxPercentage = 70;
+    const rawPercentage = (balance / goal) * 100;
+    return Math.max(minPercentage, Math.min(rawPercentage, maxPercentage));
+  };
+
+  const calculateProgresBarPercentage = (balance: number, goal: number) => {
+    const percent = Math.max(0, Math.min((balance / goal) * 100, 100));
+    const result = 100 - percent;
+    console.log("calculateProgresBarPercentage", percent, result);
+    return result;
+  };
+
+  const progressTextPercentage = statement ? calculateProgressTextPercentage(statement.balance, 60000) : 0;
+  const progressBarPercentage = statement ? calculateProgresBarPercentage(statement.balance, 60000) : 0;
+  console.log("progressBarPercentage", progressBarPercentage);
 
   return (
     <div className={styles.container}>
@@ -46,14 +63,19 @@ const Monobank = () => {
       <div className={styles.progressBarContainer}>
         <div className={styles.progressBar}>
           <div className={styles.currentProgress} />
-          {/* <div className={styles.progressMask}></div> */}
-          <svg className={styles.SVG} width="100%" height="100%" viewBox="0 0 100 30" preserveAspectRatio="none">
+          <div
+            className={styles.progressMask}
+            style={{ "--progress-width": `${progressBarPercentage}%` } as React.CSSProperties}
+          ></div>
+          {/* <svg className={styles.SVG} width="100%" height="100%" viewBox="0 0 100 30" preserveAspectRatio="none">
             <path d="M0,30 H100 Q90,15 100,30 H0 Z" fill="#e0e0e0" />
-          </svg>
+          </svg> */}
         </div>
         <div className={styles.progressText}>
           <div className={styles.start}>0</div>
-          <div className={styles.current}>20 000</div>
+          <div className={styles.current} style={{ left: `${progressTextPercentage}%`, transform: "translateX(-50%)" }}>
+            {statement?.balance}
+          </div>
           <div className={styles.end}>60 000</div>
         </div>
       </div>

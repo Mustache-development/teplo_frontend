@@ -90,7 +90,7 @@
   position: absolute;
   top: 0;
   left: 0;
-  width: 30%; /* Ширина видимої частини прогрес-бару */
+  width: 30%;
   height: 100%;
   background: linear-gradient(90deg, #faff1e 0%, #fe8900 49.75%, #00ab1b 100%);
   border-radius: 30px 0 0 30px;
@@ -108,7 +108,7 @@
   position: absolute;
   top: 0;
   right: 0;
-  width: 70%; /* Ширина маски, яка закриває частину прогрес-бару */
+  width: var(--progress-width);
   height: 100%;
   background: #e0e0e0; /* Колір фону контейнера, щоб перекривати градієнт */
   border-radius: 0 30px 30px 0;
@@ -131,4 +131,15 @@
   text-align: center;
   color: rgba(252, 252, 252, 1);
   margin-bottom: 36px;
+  position: relative;
+}
+
+.start {
+}
+
+.current {
+  position: absolute;
+}
+
+.end {
 }
