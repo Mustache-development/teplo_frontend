@@ -3,8 +3,21 @@ import Post from "./Post";
 let styles = require("./telegram.module.css");
 import { getPosts } from "./postService";
 
+interface ImageData {
+  base64Image: string;
+  width: number;
+  height: number;
+  caption?: string;
+}
+
+interface PostData {
+  _id: string;
+  text: string;
+  photo: ImageData[];
+}
+
 const Telegram: React.FC = () => {
-  const [posts, setPosts] = useState<{ _id: string; text: string; photo: string[] }[]>([]);
+  const [posts, setPosts] = useState<PostData[]>([]);
   const [loading, setLoading] = useState(true);
   const mainContantRef = useRef<HTMLDivElement | null>(null);
 
@@ -49,9 +62,11 @@ const Telegram: React.FC = () => {
           <div></div>
         ) : (
           <div className={styles.mainContent} ref={mainContantRef}>
-            {posts.map((post) => (
-              <Post key={post._id} images={post.photo} text={post.text} />
-            ))}
+            {posts
+              .filter((post) => post.photo.length > 0 || post.text.trim() !== "")
+              .map((post) => (
+                <Post key={post._id} images={post.photo} text={post.text} />
+              ))}
           </div>
         )}
         <a href="https://t.me/teplonaperedovu" target="_blank" rel="noopener noreferrer">

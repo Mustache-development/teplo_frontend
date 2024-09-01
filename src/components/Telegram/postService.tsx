@@ -4,28 +4,21 @@ export const getPosts = async () => {
   const baseUrl = process.env.REACT_APP_BASE_URL;
   try {
     const apiUrl = `${baseUrl}/posts`;
-    console.log(apiUrl);
+    console.log("getPost apiUrl", apiUrl);
 
-    const authToken = localStorage.getItem("authToken");
+    const response = await fetch(apiUrl, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
 
-    if (authToken) {
-      const response = await fetch(apiUrl, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${authToken}`,
-        },
-      });
-
-      if (response.ok) {
-        const result = await response.json();
-        console.log("Пости:", result);
-        return result;
-      } else {
-        console.error("Помилка при отриманні постів:", await response.json());
-      }
+    if (response.ok) {
+      const result = await response.json();
+      console.log("Пости:", result);
+      return result;
     } else {
-      console.error("Токен не знайдено. Користувач не авторизований.");
+      console.error("Помилка при отриманні постів:", await response.json());
     }
   } catch (error) {
     console.error("Мережева помилка:", error);
