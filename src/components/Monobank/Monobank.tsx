@@ -3,6 +3,7 @@ let styles = require("./monobank.module.css");
 import jar from "./jar.png";
 import Button from "../ButtonComponent/ButtonComponent";
 import axios from "axios";
+import MonobankSocket from "./MonobankSocket";
 
 const Monobank = () => {
   const [statement, setStatement] = useState<any>(null);
@@ -24,6 +25,14 @@ const Monobank = () => {
     fetchStatement();
   }, []);
 
+  const handleNewTransaction = (newTransaction: any) => {
+    setStatement((prevStatement: any) => ({
+      ...prevStatement,
+      transactions: [...(prevStatement?.transactions || []), newTransaction],
+      balance: newTransaction.balance,
+    }));
+  };
+
   const calculateProgressTextPercentage = (balance: number, goal: number) => {
     const minPercentage = 20;
     const maxPercentage = 70;
@@ -44,6 +53,7 @@ const Monobank = () => {
 
   return (
     <div className={styles.container}>
+      <MonobankSocket onTransaction={handleNewTransaction} />
       <div className={styles.pattern} />
       <div className={styles.title}>Банка Монобанк</div>
       <div className={styles.main}>
