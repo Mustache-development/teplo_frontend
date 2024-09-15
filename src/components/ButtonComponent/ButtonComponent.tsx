@@ -23,7 +23,7 @@ const defaultDarkFilledTextColor = "rgba(255, 255, 255, 1)";
 const defaultDarkOutlinedTextColor = "rgba(255, 255, 255, 0.8)";
 
 // Базовий стиль кнопки
-const ButtonBase = styled((props: StyledButtonProps) => <Link {...props} />)`
+const ButtonBase = styled.a<StyledButtonProps | any>`
   width: 100%;
   height: 48px;
   font-family: "Montserrat", sans-serif;
