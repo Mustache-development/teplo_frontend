@@ -7,8 +7,10 @@ type MonobankSocketProps = {
 
 const MonobankSocket: React.FC<MonobankSocketProps> = ({ onTransaction }) => {
   useEffect(() => {
-    const socket = io(process.env.REACT_APP_BASE_URL!, {
-      // const socket = io("https://localhost:3000", {
+    console.log("creating socket");
+    const socket = io("wss://teplo-backend.onrender.com", {
+      // const socket = io("ws://localhost:3000", {
+      path: "",
       transports: ["websocket"],
     });
 

@@ -1,15 +1,19 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 let styles = require("./monobank.module.css");
 import jar from "./jar.png";
 import Button from "../ButtonComponent/ButtonComponent";
 import axios from "axios";
 import MonobankSocket from "./MonobankSocket";
+import TransactionEvent from "./transactionEvent";
+import { TransactionType } from "./types";
 
 const Monobank = () => {
   const [statement, setStatement] = useState<any>(null);
+  const [transaction, setTransaction] = useState<TransactionType | null>(null);
 
   useEffect(() => {
     const baseUrl = process.env.REACT_APP_BASE_URL;
+
     const fetchStatement = async () => {
       try {
         const response = await axios.get(`${baseUrl}/bank`);
@@ -25,13 +29,9 @@ const Monobank = () => {
     fetchStatement();
   }, []);
 
-  const handleNewTransaction = (newTransaction: any) => {
-    setStatement((prevStatement: any) => ({
-      ...prevStatement,
-      transactions: [...(prevStatement?.transactions || []), newTransaction],
-      balance: newTransaction.balance,
-    }));
-  };
+  const handleNewTransaction = useCallback((newTransaction: TransactionType) => {
+    setTransaction(newTransaction);
+  }, []);
 
   const calculateProgressTextPercentage = (balance: number, goal: number) => {
     const minPercentage = 20;
@@ -54,6 +54,7 @@ const Monobank = () => {
   return (
     <div className={styles.container}>
       <MonobankSocket onTransaction={handleNewTransaction} />
+      {transaction && <TransactionEvent transaction={transaction} />}
       <div className={styles.pattern} />
       <div className={styles.title}>Банка Монобанк</div>
       <div className={styles.main}>
