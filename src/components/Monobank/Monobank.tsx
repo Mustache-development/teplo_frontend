@@ -1,4 +1,6 @@
 import React, { useEffect, useState, useCallback } from "react";
+import { graphql, useStaticQuery } from "gatsby";
+import { GatsbyImage, getImage } from "gatsby-plugin-image";
 let styles = require("./monobank.module.css");
 import jar from "./jar.png";
 import Button from "../ButtonComponent/ButtonComponent";
@@ -10,6 +12,18 @@ import { TransactionType } from "./types";
 const Monobank = () => {
   const [statement, setStatement] = useState<any>(null);
   const [transaction, setTransaction] = useState<TransactionType | null>(null);
+
+  const data = useStaticQuery(graphql`
+    query {
+      file(relativePath: { eq: "monobank/jar.png" }) {
+        childImageSharp {
+          gatsbyImageData(layout: CONSTRAINED)
+        }
+      }
+    }
+  `);
+
+  const jar1 = getImage(data.file);
 
   useEffect(() => {
     const baseUrl = process.env.REACT_APP_BASE_URL;
@@ -59,7 +73,8 @@ const Monobank = () => {
       <div className={styles.title}>Банка Монобанк</div>
       <div className={styles.main}>
         <div className={styles.jar}>
-          <img src={jar} alt="jar" />
+          {/* <img src={jar} alt="jar" /> */}
+          <GatsbyImage image={jar1} alt="jar" className="jarImage" />
         </div>
         <div className={styles.description}>
           <div className={styles.headline}>Наближаємо перемогу разом!</div>

@@ -30,17 +30,25 @@
 }
 .main {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   flex-direction: row;
   width: 100%;
+  position: relative;
+  height: 248px;
 }
 .jar {
-  height: 188px;
-  position: inherit;
-  top: 175px;
+  /* height: 188px; */
+  position: absolute;
+  top: 0;
   left: 0;
-  width: 150px;
+  flex: 0 0 auto;
 }
+
+.jarImage {
+  width: 240px;
+  height: auto;
+}
+
 .description {
   display: flex;
   flex-direction: column;
@@ -48,6 +56,7 @@
   flex: 1;
   max-width: 191px;
   margin-right: 16px;
+  position: absolute;
 }
 .headline {
   margin-top: 49px;
@@ -152,28 +161,61 @@
   font-weight: 600;
   top: 70px;
   left: 75px;
+  z-index: 1000;
 }
 
-.fade-inMono {
+.fadeinTrans {
+  animation: fadeInTrans 5s linear forwards;
+}
+
+.fadeoutTrans {
+  animation: fadeOutTrans 3s ease-out forwards;
+}
+
+@keyframes fadeInTrans {
+  0% {
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes fadeOutTrans {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+.fadeInMono {
   animation: fadeIn 5s linear forwards;
 }
 
-.fade-outMono {
+.fadeoutMono {
   animation: fadeOut 3s ease-out forwards;
 }
 
 @keyframes fadeIn {
   0% {
     opacity: 1;
-    top: 20px;
+    top: 40px;
   }
   10% {
     opacity: 1;
-    top: 80px; /* Проміжна точка для руху */
+    top: 80px;
   }
   40% {
     opacity: 1;
-    top: 160px; /* Основний рух */
+    top: 160px;
   }
   50% {
     opacity: 1;
@@ -181,7 +223,7 @@
   }
   100% {
     opacity: 0;
-    top: 200px;
+    top: 250px;
   }
 }
 
@@ -192,4 +234,20 @@
   to {
     opacity: 0;
   }
+}
+
+.transactionAmount {
+  color: #fffcea;
+  position: absolute;
+  font-size: 31.5px;
+  font-weight: 600;
+  top: 6px;
+  left: 80px;
+}
+
+.coin {
+  width: 50px;
+  height: auto;
+  left: 35px;
+  transform: scale(2);
 }
