@@ -1,4 +1,6 @@
 import React from "react";
+import { graphql, useStaticQuery } from "gatsby";
+import { GatsbyImage, getSrc, IGatsbyImageData, StaticImage } from "gatsby-plugin-image";
 let styles = require("./detailed.module.css");
 import ImageGallery from "react-image-gallery";
 import Gallery1 from "./Gallery1";
@@ -7,102 +9,29 @@ import Button from "../ButtonComponent/ButtonComponent";
 
 let rightArrow = require("./buttonLeft.png");
 
-const images = [
-  {
-    original: require("./img01.png").default,
-    originalHeight: 258,
-    originalWidth: 342,
-  },
-  {
-    original: require("./img02.png").default,
-    originalHeight: 258,
-    originalWidth: 342,
-  },
-  {
-    original: require("./img03.png").default,
-    originalHeight: 258,
-    originalWidth: 342,
-  },
-  {
-    original: require("./img04.png").default,
-    originalHeight: 258,
-    originalWidth: 342,
-  },
-  {
-    original: require("./img05.png").default,
-    originalHeight: 258,
-    originalWidth: 342,
-  },
-  {
-    original: require("./img06.png").default,
-    originalHeight: 258,
-    originalWidth: 342,
-  },
-  {
-    original: require("./img07.png").default,
-    originalHeight: 258,
-    originalWidth: 342,
-  },
-  {
-    original: require("./img08.png").default,
-    originalHeight: 258,
-    originalWidth: 342,
-  },
-  {
-    original: require("./img09.png").default,
-    originalHeight: 258,
-    originalWidth: 342,
-  },
-  {
-    original: require("./img10.png").default,
-    originalHeight: 258,
-    originalWidth: 342,
-  },
-  {
-    original: require("./img11.png").default,
-    originalHeight: 258,
-    originalWidth: 342,
-  },
-  {
-    original: require("./img12.png").default,
-    originalHeight: 258,
-    originalWidth: 342,
-  },
-  {
-    original: require("./img13.png").default,
-    originalHeight: 258,
-    originalWidth: 342,
-  },
-  {
-    original: require("./img14.png").default,
-    originalHeight: 258,
-    originalWidth: 342,
-  },
-  {
-    original: require("./img15.png").default,
-    originalHeight: 258,
-    originalWidth: 342,
-  },
-  {
-    original: require("./img16.png").default,
-    originalHeight: 258,
-    originalWidth: 342,
-  },
-  {
-    original: require("./img17.png").default,
-    originalHeight: 258,
-    originalWidth: 342,
-  },
-  {
-    original: require("./img18.png").default,
-    originalHeight: 258,
-    originalWidth: 342,
-  },
-];
-
 interface DetailedProps {}
 
 const Detailed: React.FC<DetailedProps> = ({}) => {
+  const data = useStaticQuery(graphql`
+    query {
+      allFile(filter: { relativeDirectory: { eq: "detailed" } }) {
+        edges {
+          node {
+            childImageSharp {
+              gatsbyImageData(width: 342, height: 258)
+            }
+          }
+        }
+      }
+    }
+  `);
+
+  const images = data.allFile.edges.map((edge: any) => ({
+    original: getSrc(edge.node.childImageSharp.gatsbyImageData),
+    originalHeight: 258,
+    originalWidth: 342,
+  }));
+
   const renderRightNav = (onClick: React.MouseEventHandler<HTMLButtonElement>, disabled: boolean) => {
     return (
       <button className={`${styles.navButton} ${styles.rightNav}`} onClick={onClick} disabled={disabled}>
@@ -124,6 +53,7 @@ const Detailed: React.FC<DetailedProps> = ({}) => {
             підтримки захисникам у складний період. Почавши з постачання буржуйок на фронт, проєкт швидко розширився,
             охопивши широкий спектр необхідного обладнання.
           </p>
+          <GatsbyImage className={styles.img} image={images[0]} alt="img" />
           <br />
           <p lang="uk">
             {" "}

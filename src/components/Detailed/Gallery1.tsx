@@ -1,4 +1,6 @@
 import React, { useRef } from "react";
+import { graphql, useStaticQuery } from "gatsby";
+import { GatsbyImage, getSrc } from "gatsby-plugin-image";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -7,37 +9,49 @@ let styles = require("./detailed.module.css");
 const Gallery1 = () => {
   let sliderRef = useRef(null);
 
-  const images1 = [
-    { original: require("./sh01.jpg").default },
-    { original: require("./sh02.jpg").default },
-    { original: require("./sh03.jpg").default },
-    { original: require("./sh04.jpg").default },
-    { original: require("./sh05.jpg").default },
-    { original: require("./sh06.jpg").default },
-    { original: require("./sh07.jpg").default },
-    { original: require("./sh08.jpg").default },
-    { original: require("./sh09.jpg").default },
-    { original: require("./sh10.jpg").default },
-  ];
+  const data = useStaticQuery(graphql`
+    query {
+      gallery1: allFile(filter: { relativeDirectory: { eq: "detailed/row2" } }) {
+        edges {
+          node {
+            childImageSharp {
+              gatsbyImageData(width: 300, quality: 90)
+            }
+          }
+        }
+      }
+      gallery2: allFile(filter: { relativeDirectory: { eq: "detailed/row3" } }) {
+        edges {
+          node {
+            childImageSharp {
+              gatsbyImageData(width: 300, quality: 90)
+            }
+          }
+        }
+      }
+      gallery3: allFile(filter: { relativeDirectory: { eq: "detailed/row1" } }) {
+        edges {
+          node {
+            childImageSharp {
+              gatsbyImageData(width: 300, quality: 90)
+            }
+          }
+        }
+      }
+    }
+  `);
 
-  const images2 = [
-    { original: require("./gal11.jpg").default },
-    { original: require("./gal12.jpg").default },
-    { original: require("./gal13.jpg").default },
-    { original: require("./gal14.jpg").default },
-    { original: require("./gal15.jpg").default },
-    { original: require("./gal16.jpg").default },
-    { original: require("./gal17.jpg").default },
-  ];
+  const images1 = data.gallery1.edges.map((edge: any) => ({
+    original: getSrc(edge.node.childImageSharp.gatsbyImageData),
+  }));
 
-  const images3 = [
-    { original: require("./img11.png").default },
-    { original: require("./img12.png").default },
-    { original: require("./img13.png").default },
-    { original: require("./img14.png").default },
-    { original: require("./img15.png").default },
-    { original: require("./img16.png").default },
-  ];
+  const images2 = data.gallery2.edges.map((edge: any) => ({
+    original: getSrc(edge.node.childImageSharp.gatsbyImageData),
+  }));
+
+  const images3 = data.gallery3.edges.map((edge: any) => ({
+    original: getSrc(edge.node.childImageSharp.gatsbyImageData),
+  }));
 
   const GalleryRow = ({
     photos,

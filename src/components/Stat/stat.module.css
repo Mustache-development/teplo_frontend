@@ -18,6 +18,9 @@
   padding: 24px;
   color: #fcfcfc;
   background-color: black;
+  background-size: cover;
+  background-position: center bottom;
+  background-repeat: no-repeat;
 }
 
 .blockTitle {
