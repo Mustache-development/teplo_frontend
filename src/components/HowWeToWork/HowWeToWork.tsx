@@ -1,86 +1,96 @@
 import React from "react";
-let styles = require("./howwetowork.module.css");
 import { graphql, useStaticQuery } from "gatsby";
-import { GatsbyImage, getImage } from "gatsby-plugin-image";
+import { GatsbyImage, getImage, IGatsbyImageData } from "gatsby-plugin-image";
+
+let styles = require("./howwetowork.module.css");
 import CTA from "./cta";
 
-const HowWeToWork = () => {
+interface ImageNode {
+  node: {
+    childImageSharp: {
+      gatsbyImageData: IGatsbyImageData;
+    };
+    name: string;
+  };
+}
 
-  const data = useStaticQuery(graphql`
+interface QueryData {
+  allFile: {
+    edges: ImageNode[];
+  };
+}
+
+interface Step {
+  text: string;
+  image: string;
+}
+
+const stepsData: Step[] = [
+  {
+    text: "Отримуємо <b>запит</b> від військових",
+    image: "img1",
+  },
+  {
+    text: "Збираємо кошти через <b>донат</b>",
+    image: "img2",
+  },
+  {
+    text: "<b>Закуповуємо</b> та виготовляємо необхідне",
+    image: "img3",
+  },
+  {
+    text: "<b>Передаємо</b> допомогу військовим",
+    image: "img5",
+  },
+  {
+    text: "Обов'язковий <b>звіт</b>",
+    image: "img1",
+  },
+];
+
+const HowWeToWork = () => {
+  const data = useStaticQuery<QueryData>(graphql`
     query {
-      img1: file(relativePath: { eq: "img1.png" }) {
-        childImageSharp {
-          gatsbyImageData(width: 300, layout: CONSTRAINED)
-        }
-      }
-      img2: file(relativePath: { eq: "img2.png" }) {
-        childImageSharp {
-          gatsbyImageData(width: 300, layout: CONSTRAINED)
-        }
-      }
-      img3: file(relativePath: { eq: "img3.png" }) {
-        childImageSharp {
-          gatsbyImageData(width: 300, layout: CONSTRAINED)
-        }
-      }
-      img5: file(relativePath: { eq: "img5.png" }) {
-        childImageSharp {
-          gatsbyImageData(width: 300, layout: CONSTRAINED)
-        }
-      }
-      arrow: file(relativePath: { eq: "Arrow.png" }) {
-        childImageSharp {
-          gatsbyImageData(width: 50, layout: CONSTRAINED)
+      allFile(filter: { relativeDirectory: { eq: "howWeToWork" } }) {
+        edges {
+          node {
+            childImageSharp {
+              gatsbyImageData(layout: CONSTRAINED)
+            }
+            name
+          }
         }
       }
     }
   `);
-  
-  const img1 = getImage(data.img1);
-  const img2 = getImage(data.img2);
-  const img3 = getImage(data.img3);
-  const img5 = getImage(data.img5);
-  const arrow = getImage(data.arrow);
+
+  const images: { [key: string]: IGatsbyImageData } = data.allFile.edges.reduce(
+    (acc: { [key: string]: IGatsbyImageData }, { node }) => {
+      acc[node.name] = node.childImageSharp.gatsbyImageData;
+      return acc;
+    },
+    {}
+  );
+
+  console.log("images", images);
 
   return (
     <>
       <div className={styles.container} id="howwetowork">
         <div className="title darkColor">Конвертуємо донати в перемогу</div>
         <div className={styles.stepsContainer}>
-          <div className={styles.stepTitle}>
-            Отримуємо <b>запит</b> від військових
-          </div>
-          <div className={`${styles.stepItem} ${styles.leftArrow}`}>
-            <GatsbyImage image={img1} alt="img1" />
-            <GatsbyImage image={arrow} alt="arrow" className={styles.arrow} />
-          </div>
-          <div className={styles.stepTitle}>
-            Збираємо кошти через<b> донат</b>
-          </div>
-          <div className={`${styles.stepItem} ${styles.rightArrow}`}>
-            <img src={img2} alt="img1" />
-            <img src={arrow} alt="arrow" className={styles.arrow} />
-          </div>
-          <div className={styles.stepTitle}>
-            <b>Закуповуємо та виготовляємо</b> необхідне
-          </div>
-          <div className={`${styles.stepItem} ${styles.leftArrow}`}>
-            <img src={img3} className={styles.img} alt="img1" />
-            <img src={arrow} alt="arrow" className={styles.arrow} />
-          </div>
-          <div className={styles.stepTitle}>
-            <b>Передаємо</b> допомогу військовим
-          </div>
-          <div className={`${styles.stepItem} ${styles.rightArrow}`}>
-            <img src={img5} alt="img1" />
-            <img src={arrow} alt="arrow" className={styles.arrow} />
-          </div>
-          <div className={styles.stepTitle}>
-            Обов'язковий <b>звіт</b>
-          </div>
-          <div className={`${styles.stepItem}`}>
-            <img src={img1} alt="img1" />
-          </div>
+          {stepsData.map((step, index) => {
+            console.log("index length", index, stepsData.length, index + 1 < stepsData.length);
+            return (
+              <div key={index}>
+                <div className={styles.stepTitle} dangerouslySetInnerHTML={{ __html: step.text }} />{" "}
+                <div className={styles.stepItem}>
+                  <GatsbyImage className={styles.img} image={images[step.image]} alt={`Image ${index + 1}`} />
+                  {index + 1 < stepsData.length && <GatsbyImage image={images.arrow} alt="Arrow" />}
+                </div>
+              </div>
+            );
+          })}
         </div>
       </div>
       <CTA />
