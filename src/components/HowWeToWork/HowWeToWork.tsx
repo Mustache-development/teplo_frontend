@@ -1,13 +1,47 @@
 import React from "react";
 let styles = require("./howwetowork.module.css");
+import { graphql, useStaticQuery } from "gatsby";
+import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import CTA from "./cta";
-import img1 from "./img1.png";
-import img2 from "./img2.png";
-import img3 from "./img3.png";
-import img5 from "./img5.png";
-import arrow from "./Arrow.png";
 
 const HowWeToWork = () => {
+
+  const data = useStaticQuery(graphql`
+    query {
+      img1: file(relativePath: { eq: "img1.png" }) {
+        childImageSharp {
+          gatsbyImageData(width: 300, layout: CONSTRAINED)
+        }
+      }
+      img2: file(relativePath: { eq: "img2.png" }) {
+        childImageSharp {
+          gatsbyImageData(width: 300, layout: CONSTRAINED)
+        }
+      }
+      img3: file(relativePath: { eq: "img3.png" }) {
+        childImageSharp {
+          gatsbyImageData(width: 300, layout: CONSTRAINED)
+        }
+      }
+      img5: file(relativePath: { eq: "img5.png" }) {
+        childImageSharp {
+          gatsbyImageData(width: 300, layout: CONSTRAINED)
+        }
+      }
+      arrow: file(relativePath: { eq: "Arrow.png" }) {
+        childImageSharp {
+          gatsbyImageData(width: 50, layout: CONSTRAINED)
+        }
+      }
+    }
+  `);
+  
+  const img1 = getImage(data.img1);
+  const img2 = getImage(data.img2);
+  const img3 = getImage(data.img3);
+  const img5 = getImage(data.img5);
+  const arrow = getImage(data.arrow);
+
   return (
     <>
       <div className={styles.container} id="howwetowork">
@@ -17,8 +51,8 @@ const HowWeToWork = () => {
             Отримуємо <b>запит</b> від військових
           </div>
           <div className={`${styles.stepItem} ${styles.leftArrow}`}>
-            <img src={img1} alt="img1" />
-            <img src={arrow} alt="arrow" className={styles.arrow} />
+            <GatsbyImage image={img1} alt="img1" />
+            <GatsbyImage image={arrow} alt="arrow" className={styles.arrow} />
           </div>
           <div className={styles.stepTitle}>
             Збираємо кошти через<b> донат</b>
