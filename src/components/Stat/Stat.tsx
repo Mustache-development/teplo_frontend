@@ -16,7 +16,7 @@ interface Edge {
 
 interface Img {
   name: string;
-  image: IGatsbyImageData | undefined; // Зображення може бути undefined, якщо не знайдено
+  image: IGatsbyImageData | undefined;
 }
 
 const Stat: React.FC<StatProps> = ({}) => {
@@ -51,7 +51,7 @@ const Stat: React.FC<StatProps> = ({}) => {
   }
 
   const StatBlock: React.FC<BlockProps> = ({ image, number, name }) => {
-    const backgroundImage = image?.images?.fallback?.src ? `url(${image.images.fallback.src})` : "none";
+    const backgroundImage = image ? `url(${image.images?.fallback?.src || ""})` : "none";
 
     return (
       <div className={styles.block} style={{ backgroundImage }}>

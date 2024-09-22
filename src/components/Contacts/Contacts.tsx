@@ -1,4 +1,6 @@
 import React from "react";
+import { graphql, useStaticQuery } from "gatsby";
+import { GatsbyImage, getImage } from "gatsby-plugin-image";
 let styles = require("./contacts.module.css");
 import telegram from "./telegram.png";
 import fb_messenger from "./fb_messenger.png";
@@ -6,6 +8,18 @@ import instagram from "./instagram.png";
 import gmail from "./gmail.png";
 
 const Contacts = () => {
+  const data = useStaticQuery(graphql`
+    query {
+      aboutProjectBackground: file(name: { eq: "aboutProjectBackground" }) {
+        publicURL
+      }
+      pattern: file(name: { eq: "pattern" }) {
+        childImageSharp {
+          gatsbyImageData(width: 342, height: 258)
+        }
+      }
+    }
+  `);
   return (
     <>
       <div className={styles.container} id="contact">
