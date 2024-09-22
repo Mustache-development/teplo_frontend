@@ -11,7 +11,7 @@ const config: GatsbyConfig = {
   },
   pathPrefix: "/teplo",
   graphqlTypegen: true,
-  plugins: [`gatsby-plugin-styled-components`, "gatsby-plugin-sass", "gatsby-plugin-image", "gatsby-plugin-sitemap", {
+  plugins: [`gatsby-plugin-typescript`, `gatsby-plugin-styled-components`, "gatsby-plugin-sass", "gatsby-plugin-image", "gatsby-plugin-sitemap", {
     resolve: 'gatsby-plugin-manifest',
     options: {
       "icon": "src/images/icon.png"

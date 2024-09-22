@@ -1,9 +1,28 @@
 import React from "react";
-let styles = require("./aboutproject.module.css");
+// let styles = require("./aboutproject.module.css");
+import { graphql, useStaticQuery } from "gatsby";
+import { GatsbyImage, getImage } from "gatsby-plugin-image";
+import * as styles from "./aboutproject.module.css";
 
 interface AboutProjectProps {}
 
 const AboutProject: React.FC<AboutProjectProps> = ({}) => {
+  const data = useStaticQuery(graphql`
+    query {
+      aboutProjectBackground: file(name: { eq: "aboutProjectBackground" }) {
+        publicURL
+      }
+      pattern: file(name: { eq: "pattern" }) {
+        childImageSharp {
+          gatsbyImageData(width: 342, height: 258)
+        }
+      }
+    }
+  `);
+
+  const backgroundImage = data.aboutProjectBackground.publicURL;
+  const patternImage = getImage(data.pattern.childImageSharp);
+
   return (
     <section className={styles.container} id="about">
       <div className={styles.title}>Про проєкт</div>
@@ -18,6 +37,11 @@ const AboutProject: React.FC<AboutProjectProps> = ({}) => {
       <a href="#detailed" className={styles.buttonDetailed}>
         Детальніше
       </a>
+      <style>{`
+        .${styles.container}::before {
+          background-image: url(${backgroundImage});
+        }
+      `}</style>
     </section>
   );
 };

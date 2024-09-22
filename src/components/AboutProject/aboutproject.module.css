@@ -8,7 +8,7 @@
   margin-top: 72px;
   position: relative;
   overflow: hidden;
-  background-image: url("./pattern.png");
+  /* background-image: url("./pattern.png"); */
   background-repeat: repeat-y;
   background-position: top right;
 }
@@ -20,7 +20,8 @@
   right: 0;
   width: 430px;
   height: 501px;
-  background-image: url("./aboutProjectBackground.svg");
+  /* background-image: url("./aboutProjectBackground.svg"); */
+  background-color: hsl(210, 79%, 22%);
   background-repeat: no-repeat;
   background-position: top;
   background-size: 430px auto;

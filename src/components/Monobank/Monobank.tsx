@@ -1,8 +1,8 @@
 import React, { useEffect, useState, useCallback } from "react";
 import { graphql, useStaticQuery } from "gatsby";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
-let styles = require("./monobank.module.css");
-import jar from "./jar.png";
+// let styles = require("./monobank.module.css");
+import * as styles from "./monobank.module.css";
 import Button from "../ButtonComponent/ButtonComponent";
 import axios from "axios";
 import MonobankSocket from "./MonobankSocket";
@@ -12,6 +12,7 @@ import { TransactionType } from "./types";
 const Monobank = () => {
   const [statement, setStatement] = useState<any>(null);
   const [transaction, setTransaction] = useState<TransactionType | null>(null);
+  console.log("styles", styles);
 
   const data = useStaticQuery(graphql`
     query {
@@ -74,7 +75,7 @@ const Monobank = () => {
       <div className={styles.main}>
         <div className={styles.jar}>
           {/* <img src={jar} alt="jar" /> */}
-          <GatsbyImage image={jar1} alt="jar" className="jarImage" />
+          {jar1 && <GatsbyImage image={jar1} alt="jar" className="jarImage" />}
         </div>
         <div className={styles.description}>
           <div className={styles.headline}>Наближаємо перемогу разом!</div>

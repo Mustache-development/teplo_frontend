@@ -39,7 +39,7 @@ function Copyright(props: any) {
 const defaultTheme = createTheme();
 
 interface LoginFormProps {
-  handlesubmit: (event: React.FormEvent<HTMLFormElement>) => void;
+  handleSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
   isLoading: boolean;
   snackbarData: { open: boolean; text: string; isSuccess: boolean };
   setSnackbarData: (data: { open: boolean; text: string; isSuccess: boolean }) => void;
