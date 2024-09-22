@@ -44,21 +44,28 @@ const Stat: React.FC<StatProps> = ({}) => {
   const bg2 = images.find((img: Img) => img.name === "img2")?.image;
   const bg3 = images.find((img: Img) => img.name === "img3")?.image;
 
+  interface BlockProps {
+    image: IGatsbyImageData | undefined;
+    number: string;
+    name: string;
+  }
+
+  const StatBlock: React.FC<BlockProps> = ({ image, number, name }) => {
+    const backgroundImage = image?.images?.fallback?.src ? `url(${image.images.fallback.src})` : "none";
+
+    return (
+      <div className={styles.block} style={{ backgroundImage }}>
+        <div className={styles.number}>{number}</div>
+        <div className={styles.name}>{name}</div>
+      </div>
+    );
+  };
+
   return (
     <section className={styles.container} id="stat">
-      <div className="title darkColor">Наші досягнення</div>
-      <div className={`${styles.block}`} style={{ backgroundImage: `url(${bg1?.images.fallback.src})` }}>
-        <div className={styles.number}>300+</div>
-        <div className={styles.name}>Закритих запитів</div>
-      </div>
-      <div className={`${styles.block}`} style={{ backgroundImage: `url(${bg2?.images.fallback.src})` }}>
-        <div className={styles.number}>23</div>
-        <div className={styles.name}>Військових підрозділів</div>
-      </div>
-      <div className={`${styles.block}`} style={{ backgroundImage: `url(${bg3?.images.fallback.src})` }}>
-        <div className={styles.number}>40+</div>
-        <div className={styles.name}>Постійних донатерів</div>
-      </div>
+      <StatBlock image={bg1} number="300+" name="Закритих запитів" />
+      <StatBlock image={bg2} number="23" name="Військових підрозділів" />
+      <StatBlock image={bg3} number="40+" name="Постійних донатерів" />
     </section>
   );
 };
