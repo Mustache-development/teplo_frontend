@@ -1,6 +1,6 @@
 import React from "react";
 import { graphql, useStaticQuery } from "gatsby";
-import { GatsbyImage, getSrc, IGatsbyImageData, StaticImage } from "gatsby-plugin-image";
+import { GatsbyImage, getSrc } from "gatsby-plugin-image";
 let styles = require("./detailed.module.css");
 import ImageGallery from "react-image-gallery";
 import Gallery1 from "./Gallery1";

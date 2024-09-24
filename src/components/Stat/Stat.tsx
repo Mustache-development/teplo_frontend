@@ -51,7 +51,7 @@ const Stat: React.FC<StatProps> = ({}) => {
   }
 
   const StatBlock: React.FC<BlockProps> = ({ image, number, name }) => {
-    const backgroundImage = image ? `url(${image.images?.fallback?.src || ""})` : "none";
+    const backgroundImage = image?.images?.fallback?.src ? `url(${image.images.fallback.src})` : "none";
 
     return (
       <div className={styles.block} style={{ backgroundImage }}>
