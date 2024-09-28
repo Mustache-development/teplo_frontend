@@ -23,6 +23,7 @@ const TransactionEvent: React.FC<Props> = ({ transaction }) => {
   `);
 
   const image = getImage(dataCoin.file);
+  console.log("transaction event image", image);
 
   useEffect(() => {
     if (transaction) {
