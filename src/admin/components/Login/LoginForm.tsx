@@ -40,7 +40,7 @@ export default function SignIn({ onLoginSucces }) {
       };
       console.log(requestBody);
 
-      const baseUrl = process.env.REACT_APP_BASE_URL;
+      const baseUrl = `https://${process.env.REACT_APP_BASE_URL}/api`;
       console.log(baseUrl);
       const apiUrl = `${baseUrl}/auth/login`;
       const response = await fetch(apiUrl, {

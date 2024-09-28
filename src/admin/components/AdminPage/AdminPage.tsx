@@ -8,7 +8,7 @@ const Admin: React.FC = (props) => {
   const authToken = localStorage.getItem("authToken");
   const formattedToken = authToken ? authToken.replace(/"/g, "") : "";
   const [isAuth, setIsAuth] = useState(false);
-  const baseUrl = process.env.REACT_APP_BASE_URL;
+  const baseUrl = `https://${process.env.REACT_APP_BASE_URL}/api`;
   // const baseUrl = "https://teplo-back.onrender.com/api";
 
   const handleAuthFail = (resposeCode: number | string): void => {

@@ -1,7 +1,7 @@
 // Функція для отримання постів
 export const getPosts = async () => {
   console.log("getPost work");
-  const baseUrl = process.env.REACT_APP_BASE_URL;
+  const baseUrl = `https://${process.env.REACT_APP_BASE_URL}`;
   try {
     const apiUrl = `${baseUrl}/posts`;
     console.log("getPost apiUrl", apiUrl);

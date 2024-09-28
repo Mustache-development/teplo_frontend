@@ -27,7 +27,7 @@ const Monobank = () => {
   const jar1 = getImage(data.file);
 
   useEffect(() => {
-    const baseUrl = process.env.REACT_APP_BASE_URL;
+    const baseUrl = `https://${process.env.REACT_APP_BASE_URL}/api`;
 
     const fetchStatement = async () => {
       try {
