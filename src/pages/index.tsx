@@ -5,9 +5,9 @@ import GlobalStyle from "../styles/GlobalStyle";
 import Header from "../components/Header/Header";
 import AboutProject from "../components/AboutProject/AboutProject";
 import Stat from "../components/Stat/Stat";
-// import HowWeToWork from "../components/HowWeToWork/HowWeToWork";
+import HowWeToWork from "../components/HowWeToWork/HowWeToWork";
 import Telegram from "../components/Telegram/Telegram";
-// import Detailed from "../components/Detailed/Detailed";
+import Detailed from "../components/Detailed/Detailed";
 import Position from "../components/Position/Position";
 import OurTeam from "../components/OurTeam/OurTeam";
 import Monobank from "../components/Monobank/Monobank";
@@ -22,10 +22,10 @@ const IndexPage: React.FC<PageProps> = () => {
       <Header />
       <AboutProject />
       <Stat />
-      {/* <HowWeToWork /> */}
+      <HowWeToWork />
       <Telegram />
       <Monobank />
-      {/* <Detailed /> */}
+      <Detailed />
       <Position />
       <OurTeam />
       <Donators />

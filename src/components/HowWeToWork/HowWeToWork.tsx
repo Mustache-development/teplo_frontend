@@ -80,13 +80,21 @@ const HowWeToWork = () => {
         <div className="title darkColor">Конвертуємо донати в перемогу</div>
         <div className={styles.stepsContainer}>
           {stepsData.map((step, index) => {
-            console.log("index length", index, stepsData.length, index + 1 < stepsData.length);
             return (
               <div key={index}>
-                <div className={styles.stepTitle} dangerouslySetInnerHTML={{ __html: step.text }} />{" "}
+                <div
+                  className={styles.stepTitle}
+                  dangerouslySetInnerHTML={{ __html: step.text }}
+                />{" "}
                 <div className={styles.stepItem}>
-                  <GatsbyImage className={styles.img} image={images[step.image]} alt={`Image ${index + 1}`} />
-                  {index + 1 < stepsData.length && <GatsbyImage image={images.arrow} alt="Arrow" />}
+                  <GatsbyImage
+                    className={styles.img}
+                    image={images[step.image]}
+                    alt={`Image ${index + 1}`}
+                  />
+                  {index + 1 < stepsData.length && (
+                    <GatsbyImage image={images.arrow} alt="Arrow" />
+                  )}
                 </div>
               </div>
             );
