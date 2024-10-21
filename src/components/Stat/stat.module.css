@@ -1,7 +1,6 @@
 .container {
   display: flex;
   padding-top: 4px;
-  display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -18,9 +17,6 @@
   padding: 24px;
   color: #fcfcfc;
   background-color: black;
-  background-size: cover;
-  background-position: center bottom;
-  background-repeat: no-repeat;
 }
 
 .blockTitle {
@@ -66,4 +62,40 @@
   background-size: cover;
   background-position: center middle;
   background-repeat: no-repeat;
+}
+
+@media (min-width: 768px) {
+  .container{
+    margin-top: 52px;
+    padding: 0px 160px;
+  }
+
+  
+  .rowContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 16px; /* Розміщуємо три блоки з відстанями між ними */
+    margin: 0;
+  }
+
+  .block{
+    height: 160px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    flex-grow: 1;
+  }
+
+  .blockTitle{
+    margin: 56px auto;
+  }
+
+  .background3 {
+    background-image: url("./img3PC.png");
+    background-size: 100%;
+    background-position: center;
+  }
 }

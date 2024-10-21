@@ -1,104 +1,52 @@
 import React from "react";
-import { graphql, useStaticQuery } from "gatsby";
-import { GatsbyImage, getImage, IGatsbyImageData } from "gatsby-plugin-image";
-
 let styles = require("./howwetowork.module.css");
 import CTA from "./cta";
-
-interface ImageNode {
-  node: {
-    childImageSharp: {
-      gatsbyImageData: IGatsbyImageData;
-    };
-    name: string;
-  };
-}
-
-interface QueryData {
-  allFile: {
-    edges: ImageNode[];
-  };
-}
-
-interface Step {
-  text: string;
-  image: string;
-}
-
-const stepsData: Step[] = [
-  {
-    text: "Отримуємо <b>запит</b> від військових",
-    image: "img1",
-  },
-  {
-    text: "Збираємо кошти через <b>донат</b>",
-    image: "img2",
-  },
-  {
-    text: "<b>Закуповуємо</b> та виготовляємо необхідне",
-    image: "img3",
-  },
-  {
-    text: "<b>Передаємо</b> допомогу військовим",
-    image: "img5",
-  },
-  {
-    text: "Обов'язковий <b>звіт</b>",
-    image: "img1",
-  },
-];
+import img1 from "./img1.png";
+import img2 from "./img2.png";
+import img3 from "./img3.png";
+import img5 from "./img5.png";
+import arrow from "./Arrow.png";
 
 const HowWeToWork = () => {
-  const data = useStaticQuery<QueryData>(graphql`
-    query {
-      allFile(filter: { relativeDirectory: { eq: "howWeToWork" } }) {
-        edges {
-          node {
-            childImageSharp {
-              gatsbyImageData(layout: CONSTRAINED)
-            }
-            name
-          }
-        }
-      }
-    }
-  `);
-
-  const images: { [key: string]: IGatsbyImageData } = data.allFile.edges.reduce(
-    (acc: { [key: string]: IGatsbyImageData }, { node }) => {
-      acc[node.name] = node.childImageSharp.gatsbyImageData;
-      return acc;
-    },
-    {}
-  );
-
-  console.log("images", images);
-
   return (
     <>
       <div className={styles.container} id="howwetowork">
         <div className="title darkColor">Конвертуємо донати в перемогу</div>
         <div className={styles.stepsContainer}>
-          {stepsData.map((step, index) => {
-            return (
-              <div key={index}>
-                <div
-                  className={styles.stepTitle}
-                  dangerouslySetInnerHTML={{ __html: step.text }}
-                />{" "}
-                <div className={styles.stepItem}>
-                  <GatsbyImage
-                    className={styles.img}
-                    image={images[step.image]}
-                    alt={`Image ${index + 1}`}
-                  />
-                  {index + 1 < stepsData.length && (
-                    <GatsbyImage image={images.arrow} alt="Arrow" />
-                  )}
-                </div>
-              </div>
-            );
-          })}
+          <div className={styles.stepTitle}>
+            Отримуємо <b>запит</b> від військових
+          </div>
+          <div className={`${styles.stepItem} ${styles.leftArrow}`}>
+            <img src={img1} alt="img1" />
+            <img src={arrow} alt="arrow" className={styles.arrow} />
+          </div>
+          <div className={styles.stepTitle}>
+            Збираємо кошти через<b> донат</b>
+          </div>
+          <div className={`${styles.stepItem} ${styles.rightArrow}`}>
+            <img src={img2} alt="img1" />
+            <img src={arrow} alt="arrow" className={styles.arrow} />
+          </div>
+          <div className={styles.stepTitle}>
+            <b>Закуповуємо та виготовляємо</b> необхідне
+          </div>
+          <div className={`${styles.stepItem} ${styles.leftArrow}`}>
+            <img src={img3} className={styles.img} alt="img1" />
+            <img src={arrow} alt="arrow" className={styles.arrow} />
+          </div>
+          <div className={styles.stepTitle}>
+            <b>Передаємо</b> допомогу військовим
+          </div>
+          <div className={`${styles.stepItem} ${styles.rightArrow}`}>
+            <img src={img5} alt="img1" />
+            <img src={arrow} alt="arrow" className={styles.arrow} />
+          </div>
+          <div className={styles.stepTitle}>
+            Обов'язковий <b>звіт</b>
+          </div>
+          <div className={`${styles.stepItem}`}>
+            <img src={img1} alt="img1" />
+          </div>
         </div>
       </div>
       <CTA />

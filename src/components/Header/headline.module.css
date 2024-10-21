@@ -12,7 +12,7 @@
   -webkit-backdrop-filter: blur(10px);
   z-index: 9999;
   overflow: hidden;
-  max-width: 430px;
+  max-width: 1200px;
 }
 
 .menuButtons {
