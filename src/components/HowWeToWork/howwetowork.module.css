@@ -6,6 +6,11 @@
   flex-direction: column;
 }
 
+.arrow {
+  display: flex;
+  margin: 24px 0;
+}
+
 .stepTitle {
   font-size: 14px;
   font-weight: 400;
@@ -22,11 +27,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-}
-.stepsContainer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   flex-direction: column;
   margin-bottom: 83px;
 }
@@ -37,7 +37,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 8px;
 }
 
 .ctaContainer {
@@ -51,8 +50,26 @@
   padding: 16px;
 }
 
-@media (min-height: 768px){
+@media (min-width: 768px){
   .container{
     margin-top: 64px;
+  }
+
+  .arrow {
+    display: none;
+  }
+
+  .stepsContainer{
+    display: ruby;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  
+  .stepItem{
+    margin: 0 16px 32px 16px;
+  }
+
+  .stepTitle {
+    margin-bottom: 32px;
   }
 }

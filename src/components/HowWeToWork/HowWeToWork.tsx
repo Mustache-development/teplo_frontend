@@ -13,41 +13,31 @@ const HowWeToWork = () => {
       <div className={styles.container} id="howwetowork">
         <div className="title darkColor">Конвертуємо донати в перемогу</div>
         <div className={styles.stepsContainer}>
-          <div className={styles.stepTitle}>
-            Отримуємо <b>запит</b> від військових
-          </div>
-          <div className={`${styles.stepItem} ${styles.leftArrow}`}>
-            <img src={img1} alt="img1" />
-            <img src={arrow} alt="arrow" className={styles.arrow} />
-          </div>
-          <div className={styles.stepTitle}>
-            Збираємо кошти через<b> донат</b>
-          </div>
-          <div className={`${styles.stepItem} ${styles.rightArrow}`}>
-            <img src={img2} alt="img1" />
-            <img src={arrow} alt="arrow" className={styles.arrow} />
-          </div>
-          <div className={styles.stepTitle}>
-            <b>Закуповуємо та виготовляємо</b> необхідне
-          </div>
-          <div className={`${styles.stepItem} ${styles.leftArrow}`}>
-            <img src={img3} className={styles.img} alt="img1" />
-            <img src={arrow} alt="arrow" className={styles.arrow} />
-          </div>
-          <div className={styles.stepTitle}>
-            <b>Передаємо</b> допомогу військовим
-          </div>
-          <div className={`${styles.stepItem} ${styles.rightArrow}`}>
-            <img src={img5} alt="img1" />
-            <img src={arrow} alt="arrow" className={styles.arrow} />
-          </div>
-          <div className={styles.stepTitle}>
-            Обов'язковий <b>звіт</b>
-          </div>
-          <div className={`${styles.stepItem}`}>
-            <img src={img1} alt="img1" />
-          </div>
+        <div className={styles.stepItem}>
+          <div className={styles.stepTitle}>Отримуємо <b>запит</b> від військових</div>
+          <img src={img1} alt="img1" />
+          <img src={arrow} alt="arrow" className={styles.arrow} />
         </div>
+        <div className={styles.stepItem}>
+          <div className={styles.stepTitle}>Збираємо кошти через<b> донат</b></div>
+          <img src={img2} alt="img1" />
+          <img src={arrow} alt="arrow" className={styles.arrow} />
+        </div>
+        <div className={styles.stepItem}>
+          <div className={styles.stepTitle}><b>Закуповуємо та виготовляємо</b> необхідне</div>
+          <img src={img3} className={styles.img} alt="img1" />
+          <img src={arrow} alt="arrow" className={styles.arrow} />
+        </div>
+        <div className={styles.stepItem}>
+          <div className={styles.stepTitle}><b>Передаємо</b> допомогу військовим</div>
+          <img src={img5} alt="img1" />
+          <img src={arrow} alt="arrow" className={styles.arrow} />
+        </div>
+        <div className={styles.stepItem}>
+          <div className={styles.stepTitle}>Обов'язковий <b>звіт</b></div>
+          <img src={img1} alt="img1" />
+        </div>
+      </div>
       </div>
       <CTA />
     </>
