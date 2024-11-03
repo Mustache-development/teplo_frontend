@@ -121,8 +121,8 @@
 
 .menuItem:hover,
 .menuItem:active {
-  color: inherit; /* Зберігає колір як у звичайного посилання */
-  text-decoration: none; /* Прибирає підкреслення при наведенні і активному стані */
+  color: inherit;
+  text-decoration: none;
 }
 
 .menuContainer {

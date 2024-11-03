@@ -1,7 +1,12 @@
 import React, { useState } from "react";
 let styles = require("./headline.module.css");
-import logo from "./logo.png";
-import telegram from "./telegram.png";
+
+// import logo from "./logo.png";
+// import telegram from "./telegram.png";
+
+import { graphql, useStaticQuery } from "gatsby";
+import { StaticImage } from "gatsby-plugin-image";
+
 import Drawer from "@mui/material/Drawer";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
@@ -15,16 +20,18 @@ interface HeaderProps {}
 const HeadLine: React.FC = ({}) => {
   const [open, setOpen] = useState(false);
 
-  const toggleDrawer = (open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
-    if (
-      event.type === "keydown" &&
-      ((event as React.KeyboardEvent).key === "Tab" || (event as React.KeyboardEvent).key === "Shift")
-    ) {
-      return;
-    }
+  const toggleDrawer =
+    (open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
+      if (
+        event.type === "keydown" &&
+        ((event as React.KeyboardEvent).key === "Tab" ||
+          (event as React.KeyboardEvent).key === "Shift")
+      ) {
+        return;
+      }
 
-    setOpen(open);
-  };
+      setOpen(open);
+    };
 
   const handleSmoothScroll = (event: React.MouseEvent, link: string) => {
     event.preventDefault();
@@ -58,24 +65,57 @@ const HeadLine: React.FC = ({}) => {
   return (
     <div className={styles.container}>
       <div>
-        <img src={logo} className={styles.logo} />
+        {/* <img src={logo} className={styles.logo} /> */}
+        <StaticImage
+          src="../../images/head/logo.png"
+          alt="Logo"
+          className={styles.logo}
+          placeholder="blurred"
+          width={100}
+          formats={["auto", "webp", "avif"]}
+        />
       </div>
       <div className={styles.buttoncontainer}>
-        <a href="https://send.monobank.ua/jar/pAH2wwD8n" target="_blank" rel="noopener noreferrer">
+        <a
+          href="https://send.monobank.ua/jar/pAH2wwD8n"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           <button className={styles.button}>Підтримати</button>
         </a>
       </div>
       <div className={styles.menuButtons}>
-        <a href="https://t.me/teplonaperedovu" target="_blank" rel="noopener noreferrer">
+        <a
+          href="https://t.me/teplonaperedovu"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           <div className={styles.telegramcontainer}>
-            <img src={telegram} className={styles.telegram} />
+            <StaticImage
+              src="../../images/head/telegram.png"
+              alt="Telegram"
+              className={styles.telegram}
+              placeholder="blurred"
+              width={40}
+              formats={["auto", "webp", "avif"]}
+            />
+            {/* <img src={telegram} className={styles.telegram} /> */}
           </div>
         </a>
         <div className={styles.burgercontainer}>
           <IconButton onClick={toggleDrawer(!open)} color="inherit">
-            {open ? <CloseIcon className={styles.closeIcon} /> : <MenuIcon className={styles.menuIcon} />}
+            {open ? (
+              <CloseIcon className={styles.closeIcon} />
+            ) : (
+              <MenuIcon className={styles.menuIcon} />
+            )}
           </IconButton>
-          <Drawer anchor="top" open={open} onClose={toggleDrawer(false)} classes={{ paper: styles.menuContainer }}>
+          <Drawer
+            anchor="top"
+            open={open}
+            onClose={toggleDrawer(false)}
+            classes={{ paper: styles.menuContainer }}
+          >
             <div className={styles.listContainer}>
               <List>
                 {menuList.map((menu) => (
