@@ -19,10 +19,12 @@ interface PostData {
 const Telegram: React.FC = () => {
   const [posts, setPosts] = useState<PostData[]>([]);
   const [loading, setLoading] = useState(true);
+  let offset = 0;
+  const [allPostsLoaded, setAllPostsLoaded] = useState(false);
   const mainContantRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    fetchPosts();
+    fetchAllPosts(); // Початковий запит
   }, []);
 
   useEffect(() => {
@@ -36,15 +38,35 @@ const Telegram: React.FC = () => {
     return () => clearTimeout(timer);
   }, [loading, posts]);
 
-  const fetchPosts = async () => {
+  const fetchPosts = async (currentOffset: number) => {
+    console.log('fetch posts start');
     try {
-      const response = await getPosts();
-      console.log("Fetched posts:", response);
-      setPosts(response.posts);
+      const response = await getPosts(1, currentOffset);
+      console.log("Fetched post:", response);
+      if (response.posts.length === 0) {
+        setAllPostsLoaded(true);
+        return false;
+      }
+      setPosts((prevPosts) => [...prevPosts, ...response.posts]);
       setLoading(false);
+      return true;
     } catch (error) {
-      console.error("Помилка при отриманні постів:", error);
+      console.error("Помилка при отриманні посту:", error);
+    } finally {
+      setLoading(false);
     }
+  };
+
+  const fetchAllPosts = async () => {
+    setLoading(true);
+    let hasMorePosts: boolean | undefined = true;
+    while (hasMorePosts && !allPostsLoaded) {
+      hasMorePosts = await fetchPosts(offset);
+      if (hasMorePosts) {
+        offset = offset + 1;
+      }
+    }
+    setLoading(false);
   };
 
   return (
@@ -59,13 +81,13 @@ const Telegram: React.FC = () => {
           </a>
         </div>
         {loading ? (
-          <div></div>
+          <div>Loading...</div>
         ) : (
           <div className={styles.mainContent} ref={mainContantRef}>
             {posts
               .filter((post) => post.photo.length > 0 || post.text.trim() !== "")
-              .map((post) => (
-                <Post key={post._id} images={post.photo} text={post.text} />
+              .map((post, index) => (
+                <Post key={`${post._id}-${index}`} images={post.photo} text={post.text} />
               ))}
           </div>
         )}

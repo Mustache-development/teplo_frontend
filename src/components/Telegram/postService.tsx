@@ -1,9 +1,9 @@
 // Функція для отримання постів
-export const getPosts = async () => {
+export const getPosts = async (limit: number, offset: number) => {
   console.log("getPost work");
   const baseUrl = `https://${process.env.REACT_APP_BASE_URL}/api`;
   try {
-    const apiUrl = `${baseUrl}/posts`;
+    const apiUrl = `${baseUrl}/posts?limit=${limit}&offset=${offset}`;
     console.log("getPost apiUrl", apiUrl);
 
     const response = await fetch(apiUrl, {
