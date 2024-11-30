@@ -1,9 +1,10 @@
 import React from "react";
+import { GatsbyImage, IGatsbyImageData } from "gatsby-plugin-image";
 let styles = require("./ourTeam.module.css");
 
 interface TeamCardProps {
   name: string;
-  img: string;
+  img: IGatsbyImageData | null;
   text: string;
   button: string;
 }
@@ -11,7 +12,11 @@ interface TeamCardProps {
 const TeamCard: React.FC<TeamCardProps> = ({ name, img, text, button }) => {
   return (
     <div className={styles.cardContainer}>
-      <img src={img} alt="123" className={styles.cardImg} />
+      {img ? (
+        <GatsbyImage image={img} alt={name} />
+      ) : (
+        <div>Зображення відсутнє</div> 
+      )}
       <h2 className={styles.cardTitle}>{name}</h2>
       <p className={styles.role}>{text}</p>
     </div>
