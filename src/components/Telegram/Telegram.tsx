@@ -24,7 +24,7 @@ const Telegram: React.FC = () => {
   const mainContantRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    fetchAllPosts(); // Початковий запит
+    fetchAllPosts();
   }, []);
 
   useEffect(() => {
@@ -47,7 +47,7 @@ const Telegram: React.FC = () => {
         setAllPostsLoaded(true);
         return false;
       }
-      setPosts((prevPosts) => [...prevPosts, ...response.posts]);
+      setPosts((prevPosts) => [...response.posts, ...prevPosts]);
       setLoading(false);
       return true;
     } catch (error) {
