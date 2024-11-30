@@ -1,10 +1,11 @@
 import React from "react";
 let styles = require("./position.module.css");
 import Button from "../ButtonComponent/ButtonComponent";
+import { GatsbyImage, IGatsbyImageData } from "gatsby-plugin-image";
 
 interface PositionCardProps {
   name: string;
-  img: string;
+  img: IGatsbyImageData;
   text: string;
   button: string;
 }
@@ -13,7 +14,7 @@ const PositionCard: React.FC<PositionCardProps> = ({ name, img, text, button }) 
   return (
     <div className={styles.cardContainer}>
       <h2 className={styles.cardTitle}>{name}</h2>
-      <img src={img} alt={name} className={styles.cardImg} />
+      <GatsbyImage image={img} alt="123" className={styles.cardImg} />
       <p className={styles.cardText} lang="uk">
         {text}
       </p>

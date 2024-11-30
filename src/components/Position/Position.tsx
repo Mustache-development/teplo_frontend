@@ -8,19 +8,37 @@ import "slick-carousel/slick/slick-theme.css";
 import "./slider.css";
 import CTA from "./CTA";
 import ButtonLeftRight from "../ButtonComponent/ButtonsLeftRight";
+import { graphql, useStaticQuery } from "gatsby";
+import { IGatsbyImageData } from "gatsby-plugin-image";
+
 
 const Position: React.FC = () => {
   let sliderRef = useRef<Slider | null>(null);
 
-  const images = [
-    { original: require("./noshi.png").default },
-    { original: require("./covers.png").default },
-    { original: require("./coats.png").default },
-    { original: require("./spalniki.png").default },
-    { original: require("./gas.png").default },
-    { original: require("./lopati.png").default },
-    { original: require("./svichki.png").default },
-  ];
+  const data = useStaticQuery(graphql`
+    query {
+      allFile(filter: { relativeDirectory: { eq: "positions" } }) {
+        edges {
+          node {
+            childImageSharp {
+              gatsbyImageData(width: 342, height: 258)
+            }
+          }
+        }
+      }
+    }
+  `);
+
+  interface Edge {
+    node: {
+      childImageSharp: {
+        gatsbyImageData: IGatsbyImageData;
+      };
+    };
+  }
+  
+  const images: IGatsbyImageData[] = data.allFile.edges.map((edge: Edge) => edge.node.childImageSharp.gatsbyImageData)
+  console.log('data: ', images);
 
   var settings = {
     dots: false,
@@ -59,7 +77,7 @@ const Position: React.FC = () => {
                 name={item.name}
                 button={item.button}
                 text={item.text}
-                img={images[index % images.length].original}
+                img={images[index]}
               />
             </div>
           ))}
