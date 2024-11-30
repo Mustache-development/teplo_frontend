@@ -81,7 +81,9 @@ const Telegram: React.FC = () => {
           </a>
         </div>
         {loading ? (
-          <div>Loading...</div>
+          <div className={styles.loading}>
+            Завантаження постів...
+          </div>
         ) : (
           <div className={styles.mainContent} ref={mainContantRef}>
             {posts
