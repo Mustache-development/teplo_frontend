@@ -1,7 +1,7 @@
 import React from "react";
 // let styles = require("./aboutproject.module.css");
 import { graphql, useStaticQuery } from "gatsby";
-import { GatsbyImage, getImage } from "gatsby-plugin-image";
+import { getImage } from "gatsby-plugin-image";
 import * as styles from "./aboutproject.module.css";
 
 interface AboutProjectProps {}
