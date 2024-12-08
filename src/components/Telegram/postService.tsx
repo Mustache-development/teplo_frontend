@@ -1,4 +1,3 @@
-// Функція для отримання постів
 export const getPosts = async (limit: number, offset: number) => {
   console.log("getPost work");
   const baseUrl = `https://${process.env.REACT_APP_BASE_URL}/api`;
