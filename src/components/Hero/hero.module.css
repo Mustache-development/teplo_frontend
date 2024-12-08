@@ -39,8 +39,6 @@
   margin: 72px 0 0 0;
 }
 
-
-
 .filledbutton {
   width: 191px;
   height: 36px;
@@ -86,34 +84,40 @@
   color: linear-gradient(275.82deg, #3177be 7.7%, #011121 72.63%);
 }
 
-@media (min-width: 768px) {
+@media (min-width: 1024px) {
   .container {
-    height: 660px;
+    height: 664px;
     display: flex;
     flex-direction: column;
     align-content: flex-start;
     align-items: flex-start; /* Вирівнювання по вертикалі (внизу) */
     width: 100%; /* Батьківський контейнер займає всю ширину */
-    padding: 168px 359px 30px 135px;
+    padding: 168px 0px 30px 135px;
+  }
+
+  .button{
+    width: 280px;
+    
   }
 
   .header{
     font-size: 48px;
+    line-height: 58px;
     margin: 0px 0px 8px 0px;
   }
 
   .title{
-    font-size: 46px;
+    font-size: 64px;
+    line-height: 96px;
     margin: 0px 0px 48px 0px;
   }
 
   .description {
-    width: 630px;
-    font-size: 20px;
+    width: 673px;
+    font-size: 16px;
   }
 
   .buttoncontainer {
-    margin: 180px 0px 0px 0px;
+   margin: 152px 0px 0px 0px;
   }
 }
-
