@@ -3,4 +3,5 @@ node_modules/
 public
 src/gatsby-types.d.ts
 .env.development
-.env.production
+.env.production.DS_Store
+.DS_Store
