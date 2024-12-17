@@ -1,6 +1,7 @@
 .container {
   padding: 88px 16px 0 16px;
 }
+
 .header {
   font-family: "Montserrat", sans-serif;
   font-size: 20px;
@@ -81,4 +82,42 @@
 
   border-image-source: linear-gradient(275.82deg, #3177be 7.7%, #011121 72.63%);
   color: linear-gradient(275.82deg, #3177be 7.7%, #011121 72.63%);
+}
+
+@media (min-width: 1024px) {
+  .container {
+    height: 664px;
+    display: flex;
+    flex-direction: column;
+    align-content: flex-start;
+    align-items: flex-start; /* Вирівнювання по вертикалі (внизу) */
+    width: 100%; /* Батьківський контейнер займає всю ширину */
+    padding: 168px 0px 30px 135px;
+  }
+
+  .button{
+    width: 280px;
+    
+  }
+
+  .header{
+    font-size: 48px;
+    line-height: 58px;
+    margin: 0px 0px 8px 0px;
+  }
+
+  .title{
+    font-size: 64px;
+    line-height: 96px;
+    margin: 0px 0px 48px 0px;
+  }
+
+  .description {
+    width: 673px;
+    font-size: 16px;
+  }
+
+  .buttoncontainer {
+   margin: 152px 0px 0px 0px;
+  }
 }

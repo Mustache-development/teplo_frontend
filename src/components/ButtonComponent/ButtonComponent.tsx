@@ -2,12 +2,14 @@ import React from "react";
 import styled, { css } from "styled-components";
 import { Link } from "gatsby";
 
+
 interface ButtonProps {
   to: string;
   variant: "filled" | "outlined";
   theme: "light" | "dark";
-  width?: string;
   children: React.ReactNode;
+  className?: string; 
+  width?: string;
 }
 
 interface StyledButtonProps {
@@ -131,10 +133,11 @@ const ButtonBase = styled.a<StyledButtonProps | any>`
     `}
 `;
 
-const Button: React.FC<ButtonProps> = ({ to, children, variant, theme, width }) => (
-  <ButtonBase to={to} variant={variant} theme={theme} width={width} target="_blank">
+const Button: React.FC<ButtonProps> = ({className, to, children, variant, theme, width }) => (
+  <ButtonBase className={className} to={to} variant={variant} theme={theme} width={width} target="_blank">
     {children}
   </ButtonBase>
+
 );
 
 export default Button;
