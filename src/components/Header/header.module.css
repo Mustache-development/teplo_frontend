@@ -8,20 +8,7 @@
   position: relative;
   width: 100%;
   padding-top: 4px;
-  overflow: hidden;
-}
-
-.main::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 430px;
-  height: 372px;
-  background-repeat: no-repeat;
-  background-position: top;
-  background-size: 430px auto;
-  z-index: -1;
+  /* overflow: hidden; */
 }
 
 .menuContainer {
@@ -42,3 +29,33 @@
   right: 10px;
   cursor: pointer;
 }
+
+.main::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("./first-display-background.png");
+  background-repeat: no-repeat;
+  background-position: top left;
+  background-size: 100% auto; /* Масштабування по ширині */
+  z-index: -1;
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .main::before {
+    background-position: top left; /* Фіксація лівого верхнього кута */
+    overflow-x: hidden; /* Уникаємо горизонтальної прокрутки */
+  }
+}
+
+@media (min-width: 1024px) {
+  .main::before {
+    background-image: url("./first-display-background-pc.png"); /* Зображення для великих екранів */
+    background-size: 1440px 664px;
+    background-position: left top; /* Фіксація з лівого верхнього кута */
+  }
+}
+
