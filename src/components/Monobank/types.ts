@@ -8,4 +8,5 @@ export interface Transaction {
 export interface TransactionType {
     balance: string;
     transaction: Transaction;
+    trans_type: string;
 }
