@@ -19,15 +19,13 @@ const HeaderWrapper: React.FC<HeaderWrapperProps> = styled.div`
   background-position: top;
   background-repeat: no-repeat;
 
-  /* Desktop 1024px - 1440px */
+  /* Desktop >= 1440px */
   background-image: url(${props => props.desktopImage});
-  background-size: 1440px 664px;
-  background-position: top left;
 
-  // /* Tablet 1000px-1439px */
-  // @media (max-width: 1439px) and (min-width: 1000px) {
-  //   background-image: url(${props => props.tabletImage});
-  // }
+  /* Tablet 1000px-1439px */
+  @media (max-width: 1439px) and (min-width: 1000px) {
+    background-image: url(${props => props.tabletImage});
+  }
 
   /* Mobile < 1000px */
   @media (max-width: 999px) {
