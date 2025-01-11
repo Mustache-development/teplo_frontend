@@ -31,7 +31,7 @@ const TransactionEvent: React.FC<Props> = ({ transaction }) => {
     }
   }, [transaction]);
 
-  return (
+  return transaction.transaction.trans_type === "Зарахування" ? (
     <>
       <div key={`${animationKey}-amount`} className={`${styles.fadeinTrans} ${styles.transactionAmount}`}>
         {transaction.transaction.trans_type === "Зарахування" ? "+" : "-"}
@@ -41,7 +41,7 @@ const TransactionEvent: React.FC<Props> = ({ transaction }) => {
         {image && <GatsbyImage className={styles.coin} image={image} alt="Coin" />}
       </div>
     </>
-  );
+  ) : null;
 };
 
 export default TransactionEvent;
