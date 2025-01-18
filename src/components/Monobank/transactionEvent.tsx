@@ -3,6 +3,7 @@ let styles = require("./monobank.module.css");
 import { TransactionType } from "./types";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import { graphql, useStaticQuery } from "gatsby";
+// @ts-ignore
 import coinSound from "../../sound/coin-drop.mp3";
 
 interface Props {
