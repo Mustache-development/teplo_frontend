@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "description": "teplo-front",
+
   "author": "ItSushko14",
   "keywords": [
     "gatsby"
@@ -80,3 +81,4 @@
     "typescript-plugin-css-modules": "^5.1.0"
   }
 }
+

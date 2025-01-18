@@ -3,7 +3,7 @@ import { graphql, useStaticQuery } from "gatsby";
 import { GatsbyImage, getImage, IGatsbyImageData } from "gatsby-plugin-image";
 let styles = require("./stat.module.css");
 
-interface StatProps {}
+interface StatProps { }
 
 interface Edge {
   node: {
@@ -19,7 +19,7 @@ interface Img {
   image: IGatsbyImageData | undefined;
 }
 
-const Stat: React.FC<StatProps> = ({}) => {
+const Stat: React.FC<StatProps> = ({ }) => {
   const data = useStaticQuery(graphql`
     query {
       allFile(filter: { relativeDirectory: { eq: "stat" } }) {

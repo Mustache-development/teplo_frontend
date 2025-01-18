@@ -15,9 +15,9 @@ import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 
-interface HeaderProps {}
+interface HeaderProps { }
 
-const HeadLine: React.FC = ({}) => {
+const HeadLine: React.FC = ({ }) => {
   const [open, setOpen] = useState(false);
 
   const toggleDrawer =
@@ -140,3 +140,4 @@ const HeadLine: React.FC = ({}) => {
 };
 
 export default HeadLine;
+

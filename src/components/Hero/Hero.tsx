@@ -2,9 +2,14 @@ import React from "react";
 let styles = require("./hero.module.css");
 import Button from "../ButtonComponent/ButtonComponent";
 
-interface HeroProps {}
+interface HeroProps { }
+import React from 'react';
+let styles = require('./hero.module.css')
 
-const Hero: React.FC<HeroProps> = ({}) => {
+interface HeroProps {
+}
+
+const Hero: React.FC<HeroProps> = ({ }) => {
   return (
     <section className={styles.container}>
       <div className={styles.header}>ТЕПЛО НА ПЕРЕДОВУ</div>
