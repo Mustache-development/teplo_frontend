@@ -15,7 +15,7 @@ const MonobankSocket: React.FC<MonobankSocketProps> = ({ onTransaction }) => {
     });
 
     socket.on("bankWebHook", (data) => {
-      console.log("Отримано нову транзакцію:", data);
+      console.log("Отримано нову транзакцію:", data.transaction.trans_type);
       onTransaction(data);
     });
 

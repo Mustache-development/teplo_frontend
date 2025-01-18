@@ -3,6 +3,8 @@ let styles = require("./monobank.module.css");
 import { TransactionType } from "./types";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import { graphql, useStaticQuery } from "gatsby";
+// @ts-ignore
+import coinSound from "../../sound/coin-drop.mp3";
 
 interface Props {
   transaction: TransactionType;
@@ -10,6 +12,7 @@ interface Props {
 
 const TransactionEvent: React.FC<Props> = ({ transaction }) => {
   console.log("transaction", transaction);
+  const [audio] = useState(() => new Audio(coinSound))
   const [animationKey, setAnimationKey] = useState<number>(0);
 
   const dataCoin = useStaticQuery(graphql`
@@ -26,12 +29,13 @@ const TransactionEvent: React.FC<Props> = ({ transaction }) => {
   console.log("transaction event image", image);
 
   useEffect(() => {
-    if (transaction) {
+    if (transaction && transaction.transaction.trans_type === "Зарахування") {
       setAnimationKey((prevKey) => prevKey + 1);
+      audio.play().catch(err => console.log("Audio play error:", err));
     }
-  }, [transaction]);
+  }, [transaction, audio]);
 
-  return (
+  return transaction.transaction.trans_type === "Зарахування" ? (
     <>
       <div key={`${animationKey}-amount`} className={`${styles.fadeinTrans} ${styles.transactionAmount}`}>
         {transaction.transaction.trans_type === "Зарахування" ? "+" : "-"}
@@ -41,7 +45,7 @@ const TransactionEvent: React.FC<Props> = ({ transaction }) => {
         {image && <GatsbyImage className={styles.coin} image={image} alt="Coin" />}
       </div>
     </>
-  );
+  ) : null;
 };
 
 export default TransactionEvent;
