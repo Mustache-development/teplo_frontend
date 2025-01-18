@@ -3,8 +3,6 @@ let styles = require("./hero.module.css");
 import Button from "../ButtonComponent/ButtonComponent";
 
 interface HeroProps { }
-import React from 'react';
-let styles = require('./hero.module.css')
 
 interface HeroProps {
 }
