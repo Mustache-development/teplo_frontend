@@ -9,9 +9,9 @@ import Button from "../ButtonComponent/ButtonComponent";
 
 let rightArrow = require("./buttonLeft.png");
 
-interface DetailedProps {}
+interface DetailedProps { }
 
-const Detailed: React.FC<DetailedProps> = ({}) => {
+const Detailed: React.FC<DetailedProps> = ({ }) => {
   const data = useStaticQuery(graphql`
     query {
       allFile(filter: { relativeDirectory: { eq: "detailed" } }) {
@@ -28,14 +28,14 @@ const Detailed: React.FC<DetailedProps> = ({}) => {
 
   console.log("data of images: ", data);
 
-  // const images = data.allFile.edges.map((edge: any) => ({
-  //   original: getSrc(edge.node.childImageSharp.gatsbyImageData),
-  //   originalHeight: 258,
-  //   originalWidth: 342,
-  // }));
-  const images = data.allFile.edges.map(
+  const images = data.allFile.edges.map((edge: any) => ({
+    original: getSrc(edge.node.childImageSharp.gatsbyImageData),
+    originalHeight: 258,
+    originalWidth: 342,
+  }));
+  const oneImage = data.allFile.edges.map(
     (edge: any) => edge.node.childImageSharp.gatsbyImageData
-  );
+  )[0];
 
   console.log("Detailed images: ", images);
 
@@ -68,14 +68,12 @@ const Detailed: React.FC<DetailedProps> = ({}) => {
             складний період. Почавши з постачання буржуйок на фронт, проєкт
             швидко розширився, охопивши широкий спектр необхідного обладнання.
           </p>
-          {console.log(
-            "Дані для першого зображення:",
-            data.allFile.edges[0].node.childImageSharp.gatsbyImageData
-          )}
-          {images.length > 0 && images[0] && (
-            <GatsbyImage className={styles.img} image={images[0]} alt="img" />
-          )}
-          <br />
+          {console.log('one image:', images[0].original)}
+          <div className={styles.singleImage}>
+            {images.length > 0 && images[0].original && (
+              <GatsbyImage className={styles.img} image={oneImage} alt="img" />
+            )}
+          </div>
           <p lang="uk">
             {" "}
             Сьогодні "Тепло на передову" забезпечує військових каверами, м'якими

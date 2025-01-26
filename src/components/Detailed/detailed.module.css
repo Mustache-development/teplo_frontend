@@ -105,3 +105,10 @@
   margin-top: 56px;
   padding: 0 16px;
 }
+
+.singleImage {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 32px 0;
+}
