@@ -132,7 +132,7 @@ const ButtonBase = styled.a<StyledButtonProps | any>`
 `;
 
 const Button: React.FC<ButtonProps> = ({ to, children, variant, theme, width }) => (
-  <ButtonBase to={to} variant={variant} theme={theme} width={width} target="_blank">
+  <ButtonBase href={to} variant={variant} theme={theme} width={width} target="_blank">
     {children}
   </ButtonBase>
 );
