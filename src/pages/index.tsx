@@ -28,7 +28,7 @@ const IndexPage: React.FC<PageProps> = () => {
       <Detailed />
       <Position />
       <OurTeam />
-      <Donators />
+      {/* <Donators /> */}
       <Contacts />
       <Footer />
     </main>

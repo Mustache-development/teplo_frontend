@@ -63,8 +63,8 @@ const Stat: React.FC<StatProps> = ({ }) => {
 
   return (
     <section className={styles.container} id="stat">
-      <StatBlock image={bg1} number="300+" name="Закритих запитів" />
-      <StatBlock image={bg2} number="23" name="Військових підрозділів" />
+      <StatBlock image={bg1} number="380+" name="Закритих запитів" />
+      <StatBlock image={bg2} number="27" name="Військових підрозділів" />
       <StatBlock image={bg3} number="40+" name="Постійних донатерів" />
     </section>
   );

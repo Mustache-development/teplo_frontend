@@ -17,7 +17,10 @@ const Position: React.FC = () => {
 
   const data = useStaticQuery(graphql`
     query {
-      allFile(filter: { relativeDirectory: { eq: "positions" } }) {
+      allFile(
+        filter: { relativeDirectory: { eq: "positions" } }, 
+        sort: { fields: name, order: ASC }
+      ) {
         edges {
           node {
             childImageSharp {
@@ -36,7 +39,8 @@ const Position: React.FC = () => {
       };
     };
   }
-  
+
+  console.log("before image")
   const images: IGatsbyImageData[] = data.allFile.edges.map((edge: Edge) => edge.node.childImageSharp.gatsbyImageData)
   console.log('data: ', images);
 
