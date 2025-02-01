@@ -26,8 +26,6 @@ const Detailed: React.FC<DetailedProps> = ({ }) => {
     }
   `);
 
-  console.log("data of images: ", data);
-
   const images = data.allFile.edges.map((edge: any) => ({
     original: getSrc(edge.node.childImageSharp.gatsbyImageData),
     originalHeight: 258,
@@ -35,7 +33,7 @@ const Detailed: React.FC<DetailedProps> = ({ }) => {
   }));
   const oneImage = data.allFile.edges.map(
     (edge: any) => edge.node.childImageSharp.gatsbyImageData
-  )[0];
+  )[5];
 
   console.log("Detailed images: ", images);
 
@@ -68,7 +66,6 @@ const Detailed: React.FC<DetailedProps> = ({ }) => {
             складний період. Почавши з постачання буржуйок на фронт, проєкт
             швидко розширився, охопивши широкий спектр необхідного обладнання.
           </p>
-          {console.log('one image:', images[0].original)}
           <div className={styles.singleImage}>
             {images.length > 0 && images[0].original && (
               <GatsbyImage className={styles.img} image={oneImage} alt="img" />
