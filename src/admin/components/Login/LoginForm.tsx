@@ -2,7 +2,7 @@ import * as React from "react";
 import LoginUI from "./LoginUI";
 import { saveAuthToken } from "./authUtils";
 
-export default function SignIn({ onLoginSucces }) {
+export default function SignIn({ }) {
   const [isLoading, setIsLoading] = React.useState(false);
 
   interface SnackbarData {
