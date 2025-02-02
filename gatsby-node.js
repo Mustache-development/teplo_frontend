@@ -14,4 +14,8 @@ exports.createPages = ({ actions }) => {
     path: '/login',
     component: path.resolve('./src/admin/components/Login/Login.tsx'),
   });
+  createPage({
+    path: '/team',
+    component: path.resolve('./src/team/Team.tsx'),
+  });
 };
