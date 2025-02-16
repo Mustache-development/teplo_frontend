@@ -33,7 +33,7 @@ const Detailed: React.FC<DetailedProps> = ({ }) => {
   }));
   const oneImage = data.allFile.edges.map(
     (edge: any) => edge.node.childImageSharp.gatsbyImageData
-  )[5];
+  )[8];
 
   console.log("Detailed images: ", images);
 
