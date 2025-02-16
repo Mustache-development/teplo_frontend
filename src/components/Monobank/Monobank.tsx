@@ -12,6 +12,8 @@ import { TransactionType } from "./types";
 const Monobank = () => {
   const [statement, setStatement] = useState<any>(null);
   const [transaction, setTransaction] = useState<TransactionType | null>(null);
+  const [loading, setLoading] = useState(true);
+
   console.log("styles", styles);
 
   const data = useStaticQuery(graphql`
@@ -30,12 +32,18 @@ const Monobank = () => {
     const baseUrl = `https://${process.env.REACT_APP_BASE_URL}/api`;
 
     const fetchStatement = async () => {
+      setLoading(true);
       try {
         const response = await axios.get(`${baseUrl}/bank`);
+        if (response.data && response.data.code !== 400) {
+          setStatement(response.data);
+        } else {
+          console.error("Invalid response:", response.data);
+        }
+
+        console.log("Monobank", { response })
 
         setStatement(response.data);
-        console.log(response.data);
-        // console.log(response.data.transactions)
       } catch (error) {
         console.error("Error fetching bank statement:", error);
       }
@@ -64,7 +72,8 @@ const Monobank = () => {
 
   const progressTextPercentage = statement ? calculateProgressTextPercentage(statement.balance, 60000) : 0;
   const progressBarPercentage = statement ? calculateProgresBarPercentage(statement.balance, 60000) : 0;
-  console.log("progressBarPercentage", progressBarPercentage);
+
+  if (loading || !statement) return null;
 
   return (
     <div className={styles.container}>
