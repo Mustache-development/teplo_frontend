@@ -37,6 +37,7 @@ const Monobank = () => {
         const response = await axios.get(`${baseUrl}/bank`);
         if (response.data && response.data.code !== 400) {
           setStatement(response.data);
+          setLoading(false);
         } else {
           console.error("Invalid response:", response.data);
         }
@@ -57,7 +58,7 @@ const Monobank = () => {
   }, []);
 
   const calculateProgressTextPercentage = (balance: number, goal: number) => {
-    const minPercentage = 20;
+    const minPercentage = 10;
     const maxPercentage = 70;
     const rawPercentage = (balance / goal) * 100;
     return Math.max(minPercentage, Math.min(rawPercentage, maxPercentage));
@@ -66,11 +67,12 @@ const Monobank = () => {
   const calculateProgresBarPercentage = (balance: number, goal: number) => {
     const percent = Math.max(0, Math.min((balance / goal) * 100, 100));
     const result = 100 - percent;
-    console.log("calculateProgresBarPercentage", percent, result);
-    return result;
+    const minPercentage = 95;
+    return Math.min(minPercentage, result);
   };
 
   const progressTextPercentage = statement ? calculateProgressTextPercentage(statement.balance, 60000) : 0;
+  console.log("progressTextPercentage",progressTextPercentage )
   const progressBarPercentage = statement ? calculateProgresBarPercentage(statement.balance, 60000) : 0;
 
   if (loading || !statement) return null;
