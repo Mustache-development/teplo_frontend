@@ -72,7 +72,6 @@ const HowWeToWork = () => {
     {}
   );
 
-  console.log("images", images);
 
   return (
     <>

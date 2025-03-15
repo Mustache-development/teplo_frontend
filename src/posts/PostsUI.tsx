@@ -14,7 +14,6 @@ interface PostsUIProps {
 }
 
 const PostsUI: React.FC<PostsUIProps> = ({ posts }) => {
-  console.log(posts);
   const formatImages = (urls: string[]): ImageData[] => {
     return urls.map((url, index) => ({
       src: url,
@@ -28,10 +27,7 @@ const PostsUI: React.FC<PostsUIProps> = ({ posts }) => {
         <h2>Список постів</h2>
         <ul>
           {posts?.map((post) => {
-            console.log("post = ", post, post.photo);
             let imgUrl = post.photo[0]?.replace("localhost:3000", "localhost:5000");
-            console.log(imgUrl);
-            console.log(post.photo[0]);
             return (
               <li key={post.id}>
                 <Post text={post.text} images={post.photo} />

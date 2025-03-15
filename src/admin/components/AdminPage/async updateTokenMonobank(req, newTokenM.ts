@@ -59,7 +59,6 @@ async updateTokenMonobank(req, newTokenMonobank: string) {
         jars,
       };
     } catch (err) {
-      console.log(err);
       return {
         code: 500,
         message: "error server",

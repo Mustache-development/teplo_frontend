@@ -35,8 +35,6 @@ const Detailed: React.FC<DetailedProps> = ({ }) => {
     (edge: any) => edge.node.childImageSharp.gatsbyImageData
   )[8];
 
-  console.log("Detailed images: ", images);
-
   const renderRightNav = (
     onClick: React.MouseEventHandler<HTMLButtonElement>,
     disabled: boolean

@@ -41,7 +41,6 @@ const OurTeam: React.FC = () => {
   }
 
   const images: IGatsbyImageData[] = data.allFile.edges.map((edge: Edge) => edge.node.childImageSharp.gatsbyImageData)
-  console.log('Team images: ', images);
 
   var settings = {
     dots: false,

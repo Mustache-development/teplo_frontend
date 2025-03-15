@@ -14,8 +14,6 @@ const Monobank = () => {
   const [transaction, setTransaction] = useState<TransactionType | null>(null);
   const [loading, setLoading] = useState(true);
 
-  console.log("styles", styles);
-
   const data = useStaticQuery(graphql`
     query {
       file(relativePath: { eq: "monobank/jar.png" }) {
@@ -39,14 +37,10 @@ const Monobank = () => {
           setStatement(response.data);
           setLoading(false);
         } else {
-          console.error("Invalid response:", response.data);
         }
-
-        console.log("Monobank", { response })
 
         setStatement(response.data);
       } catch (error) {
-        console.error("Error fetching bank statement:", error);
       }
     };
 
@@ -72,7 +66,6 @@ const Monobank = () => {
   };
 
   const progressTextPercentage = statement ? calculateProgressTextPercentage(statement.balance, 60000) : 0;
-  console.log("progressTextPercentage",progressTextPercentage )
   const progressBarPercentage = statement ? calculateProgresBarPercentage(statement.balance, 60000) : 0;
 
   if (loading || !statement) return null;

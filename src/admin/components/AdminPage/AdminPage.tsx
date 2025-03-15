@@ -13,7 +13,6 @@ const Admin: React.FC = (props) => {
 
   const handleAuthFail = (resposeCode: number | string): void => {
     if (resposeCode === 401 || resposeCode === "401") {
-      console.log("autirization is fail");
       handleLogOut();
     }
   };
@@ -43,20 +42,15 @@ const Admin: React.FC = (props) => {
 
         if (response.ok) {
           const data = await response.json();
-          console.log(data);
           if (data.code !== 200) {
-            console.log("авторизація не підтвердєжена");
             localStorage.removeItem("authToken");
             window.location.replace("/admin");
           }
           if (data.code === 2000) {
-            console.log("авторизація підтверджена");
           }
         } else {
-          console.error("Network error:", response.status, response.statusText);
         }
       } catch (error) {
-        console.error("Network error:", error);
       }
     };
 
@@ -75,11 +69,8 @@ const Admin: React.FC = (props) => {
   const [monoJars, setMonoJars] = useState<MonoJars[]>([]);
 
   const sendMonoToken = async (data: string) => {
-    console.log(`Token monobank "${data}"`);
     const apiUrl = `${baseUrl}/admin/token-monobank`;
-    console.log(apiUrl);
     const bodyContent = { token: data };
-    console.log(JSON.stringify(bodyContent));
     setIsJarsLoading(true);
     try {
       const response = await fetch(apiUrl, {
@@ -90,7 +81,6 @@ const Admin: React.FC = (props) => {
         },
         body: JSON.stringify(bodyContent),
       });
-      console.log(response);
       setIsJarsLoading(false);
 
       if (response.ok) {
@@ -98,28 +88,19 @@ const Admin: React.FC = (props) => {
         if (responseData.code !== 200) {
           handleNetworkRequest("помилка у токені", false);
         } else {
-          console.log(`Successfully send token monobank`);
-          console.log(responseData.message);
-          console.log(responseData.code);
-          console.log(responseData.jars);
           handleAuthFail(responseData.code);
           setMonoJars(responseData.jars);
         }
       } else {
-        console.error(`Error saving settings for :`, response.status, response.statusText);
         handleNetworkRequest("дані не збережено", false);
       }
     } catch (error) {
-      console.error("Network error:", error);
     }
   };
 
   const sendJarID = async (data: string) => {
-    console.log(`Jar id "${data}"`);
     const apiUrl = `${baseUrl}/admin/jar-monobank`;
-    console.log(apiUrl);
     const bodyContent = { jarId: data };
-    console.log(JSON.stringify(bodyContent));
     setIsJarIdLoading((prevState) => ({
       ...prevState,
       [data]: true,
@@ -133,7 +114,6 @@ const Admin: React.FC = (props) => {
         },
         body: JSON.stringify(bodyContent),
       });
-      console.log(response);
       setIsJarIdLoading((prevState) => ({
         ...prevState,
         [data]: false,
@@ -141,16 +121,13 @@ const Admin: React.FC = (props) => {
 
       if (response.ok) {
         const responseData = await response.json();
-        console.log(responseData.code);
         responseData.code === 200
           ? handleNetworkRequest("дані успішно збережені", true)
           : handleNetworkRequest("дані не збережено", false);
       } else {
-        console.error(`Error saving settings for :`, response.status, response.statusText);
         handleNetworkRequest("дані не збережено", false);
       }
     } catch (error) {
-      console.error("Network error:", error);
     }
   };
 
@@ -181,9 +158,6 @@ const Admin: React.FC = (props) => {
   });
 
   const handleSave = async (name: string, data: string) => {
-    console.log("handleSave from AdminPage");
-    console.log(name);
-    console.log(data);
     setIsLoading((prevState) => ({
       ...prevState,
       [name]: true,
@@ -210,12 +184,8 @@ const Admin: React.FC = (props) => {
       apiUrl = `${baseUrl}/admin/${queryRequest[name]}=${data}`;
     }
 
-    console.log(apiUrl);
-    console.log(bodyContent);
 
     try {
-      console.log(`Sending request to: ${apiUrl}`);
-
       const response = await fetch(apiUrl, {
         method: "PUT",
         headers: {
@@ -227,23 +197,19 @@ const Admin: React.FC = (props) => {
 
       setIsLoading((prevState) => ({
         ...prevState,
-        [name]: false, // Після завершення операції збереження, встановлюємо стан isLoading для відповідної кнопки в false
+        [name]: false,
       }));
 
       if (response.ok) {
         const responseData = await response.json();
-        console.log(response);
-        console.log(`Successfully saved settings`);
         handleAuthFail(responseData.code);
         responseData.code == 200
           ? handleNetworkRequest("дані успішно збережені", true)
           : handleNetworkRequest("дані не збережено", false);
       } else {
-        console.error(`Error saving settings for :`, response.status, response.statusText);
         handleNetworkRequest("відбулась помилка", false);
       }
     } catch (error) {
-      console.error("Network error:", error);
     }
   };
 

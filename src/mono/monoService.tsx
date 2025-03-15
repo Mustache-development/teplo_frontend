@@ -8,13 +8,11 @@ const MonoService: React.FC = () => {
   useEffect(() => {
     const fetchStatement = async () => {
       try {
-        const response = await axios.get("https://teplo-back.onrender.com/api/bank"); // Маршрут для запиту на ваш бекенд
+        const url = "https://teplo-back.onrender.com/api/bank";
+        const response = await axios.get(url); 
 
         setStatement(response.data);
-        console.log(response.data)
-        // console.log(response.data.transactions)
       } catch (error) {
-        console.error("Error fetching bank statement:", error);
       }
 
     };
@@ -24,9 +22,7 @@ const MonoService: React.FC = () => {
           const response = await axios.post("https://teplo-back.onrender.com/api/bankWebHook");
   
           
-          console.log(response.data)
         } catch (error) {
-          console.error("Error fetching bank statement:", error);
         }
       }
 

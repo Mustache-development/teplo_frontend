@@ -7,7 +7,6 @@ type MonobankSocketProps = {
 
 const MonobankSocket: React.FC<MonobankSocketProps> = ({ onTransaction }) => {
   useEffect(() => {
-    console.log("creating socket");
     const socket = io(`wss://${process.env.REACT_APP_BASE_URL}`, {
       // const socket = io("ws://localhost:3000", {
       path: "",
@@ -15,7 +14,6 @@ const MonobankSocket: React.FC<MonobankSocketProps> = ({ onTransaction }) => {
     });
 
     socket.on("bankWebHook", (data) => {
-      console.log("Отримано нову транзакцію:", data.transaction.trans_type);
       onTransaction(data);
     });
 
