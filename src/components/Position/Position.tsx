@@ -40,9 +40,7 @@ const Position: React.FC = () => {
     };
   }
 
-  console.log("before image")
   const images: IGatsbyImageData[] = data.allFile.edges.map((edge: Edge) => edge.node.childImageSharp.gatsbyImageData)
-  console.log('data: ', images);
 
   var settings = {
     dots: false,

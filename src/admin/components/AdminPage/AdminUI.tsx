@@ -114,9 +114,6 @@
         }
 
         const handleSaveClick = (e: React.MouseEvent<HTMLButtonElement>, name: string) => {
-            console.log(e)
-            console.log(formData[name]);
-            console.log(name)
             handleSave(name, formData[name]);
         };
 

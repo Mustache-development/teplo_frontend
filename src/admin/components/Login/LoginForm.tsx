@@ -23,7 +23,6 @@ export default function SignIn({ }) {
       text: text,
       isSuccess: isSuccess,
     });
-    console.log("handleNetworkRequest");
   };
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -38,10 +37,8 @@ export default function SignIn({ }) {
         email,
         password,
       };
-      console.log(requestBody);
 
       const baseUrl = `https://${process.env.REACT_APP_BASE_URL}/api`;
-      console.log(baseUrl);
       const apiUrl = `${baseUrl}/auth/login`;
       const response = await fetch(apiUrl, {
         method: "POST",
@@ -53,11 +50,8 @@ export default function SignIn({ }) {
 
       if (response.ok) {
         const responseData = await response.json();
-        console.log(responseData);
-        console.log(responseData.token);
         const token = responseData.token;
         if (responseData.token) {
-          console.log("Успішна авторизація:");
           handleNetworkRequest("Авторизація успішна", true);
           saveAuthToken(token);
           setIsLoading(false);
@@ -65,22 +59,14 @@ export default function SignIn({ }) {
         } else {
           handleNetworkRequest("Авторизація не відбулась", false);
           setIsLoading(false);
-          console.log(response);
         }
       } else {
-        console.error("Помилка на бекенді:", await response.json());
       }
     } catch (error) {
-      console.error("Мережева помилка:", error);
       handleNetworkRequest("Запит не успішний", false);
 
       setIsLoading(false);
     }
-
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
   };
 
   return (

@@ -5,7 +5,6 @@ interface AuthToken {
   
   // Save token to localStorage
   export const saveAuthToken = (token: AuthToken): void => {
-    console.log('saveAuthtoken run')
     localStorage.setItem('authToken', JSON.stringify(token));
   };
   

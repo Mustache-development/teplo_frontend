@@ -12,7 +12,6 @@ const Admin: React.FC = () => {
   useEffect( () => {
     const token: string | null = localStorage.getItem('authToken');
     setIsLogged(!!token);
-    console.log(token)
   }, [])
     
 

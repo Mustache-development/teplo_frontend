@@ -13,8 +13,6 @@ interface Post {
 const PostListComponent: React.FC = () => {
   const [posts, setPosts] = useState<Post[]>([]);
 
-  console.log('PostList work')
-
   useEffect(() => {
     // Викликаємо функцію для отримання постів при завантаженні компоненту
     fetchPosts();
@@ -23,15 +21,10 @@ const PostListComponent: React.FC = () => {
   const fetchPosts = async () => {
     try {
       const response = await getPosts(); // Викликаємо функцію отримання постів
-      console.log(response)
       setPosts(response.posts); // Встановлюємо отримані пости в стан
-      console.log(posts)
     } catch (error) {
-      console.error('Помилка при отриманні постів:', error);
     }
   };
-
-  console.log(posts)
 
   return (
     <PostsUI posts={posts}/>

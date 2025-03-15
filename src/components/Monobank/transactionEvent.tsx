@@ -11,7 +11,6 @@ interface Props {
 }
 
 const TransactionEvent: React.FC<Props> = ({ transaction }) => {
-  console.log("transaction", transaction);
   const [audio] = useState(() => new Audio(coinSound))
   const [animationKey, setAnimationKey] = useState<number>(0);
 
@@ -26,7 +25,6 @@ const TransactionEvent: React.FC<Props> = ({ transaction }) => {
   `);
 
   const image = getImage(dataCoin.file);
-  console.log("transaction event image", image);
 
   useEffect(() => {
     if (transaction && transaction.transaction.trans_type === "Зарахування") {
