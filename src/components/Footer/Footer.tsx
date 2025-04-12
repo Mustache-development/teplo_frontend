@@ -55,7 +55,9 @@ const Footer = () => {
       </div>
 
       <div className={styles.ancors}>
-        <div className={styles.admin}>Команда розробки</div>
+        <a href="team/" target="_blank">
+          <div className={styles.admin}>Команда розробки</div>
+        </a>
         <a href="admin/" target="_blank">
           <div className={styles.admin}>Адміністративна панель</div>
         </a>
