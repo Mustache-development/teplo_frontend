@@ -16,6 +16,6 @@ exports.createPages = ({ actions }) => {
   });
   createPage({
     path: '/team',
-    component: path.resolve('./src/team/Team.tsx'),
+    component: path.resolve('./src/pages/Team.tsx'),
   });
 };

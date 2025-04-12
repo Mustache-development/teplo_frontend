@@ -1,18 +1,19 @@
 import React from 'react';
+import styles from './team.module.css';
 
-type TeamMember = {
+interface TeamMember {
     name: string;
     title: string;
     description: string;
     photo: string;
-};
+}
 
 const teamMembers: TeamMember[] = [
     {
-        name: 'John Doe',
-        title: 'Frontend Developer',
+        name: 'Sushko Andriy',
+        title: 'Team Lead, Frontend Developer',
         description: 'Specializes in building responsive and interactive web applications.',
-        photo: '/images/john_doe.jpg',
+        photo: '/images/team/img1.jpeg',
     },
     {
         name: 'Jane Smith',
@@ -48,14 +49,25 @@ const teamMembers: TeamMember[] = [
 
 const Team: React.FC = () => {
     return (
-        <div>
-            <h1>Our Team</h1>
-            <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+        <div className={styles.teamPage}>
+            <div className={styles.teamTitle}>
+                <h1>Наша команда</h1>
+                <p>Талановиті професіонали, які працюють разом для створення чудового продукту</p>
+            </div>
+
+            <div className={styles.teamGrid}>
                 {teamMembers.map((member) => (
-                    <div key={member.name} style={{ margin: '20px', textAlign: 'center' }}>
-                        <img src={member.photo} alt={member.name} style={{ width: '150px', height: '150px', borderRadius: '50%' }} />
-                        <h2>{member.title}</h2>
-                        <p>{member.description}</p>
+                    <div key={member.name} className={styles.teamCard}>
+                        <img 
+                            src={member.photo} 
+                            alt={member.name} 
+                            className={styles.teamImage}
+                        />
+                        <div className={styles.teamContent}>
+                            <h2 className={styles.teamName}>{member.name}</h2>
+                            <h3 className={styles.teamTitle}>{member.title}</h3>
+                            <p className={styles.teamDescription}>{member.description}</p>
+                        </div>
                     </div>
                 ))}
             </div>
